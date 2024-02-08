@@ -1,0 +1,106 @@
+---
+title: "Lab Exercise 1"
+author: "Abdul Azim P. Bansara"
+date: "2024-02-07"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+library(dplyr)
+library(rvest)
+library(polite)
+library(httr)
+library(selectr)
+library(xml2)
+
+
+```
+
+```{r}
+#url1
+url <- "https://www.amazon.co.uk/s?k=shoes&crid=1YW0YCJDGWCRU&sprefix=shoes+f%2Caps%2C280&ref=nb_sb_noss_2"
+
+producdf <- data.frame()
+
+session <- bow(url,
+              user_agent = "For Educational Purposes")
+
+
+
+
+ scrapeNodes <- function(selector){
+    scrape(session) %>%
+      html_nodes(selector) %>%
+      html_text(trim = TRUE)
+   
+}
+   
+   
+product_name <- scrapeNodes("span.a-size-base-plus.a-color-base.a-text-normal")
+product_name <- product_name[1:41]
+
+product_price <- scrapeNodes("span.a-price")
+product_price <- product_price[1:41]
+
+product_ratings <- scrapeNodes("i.a-icon.a-icon-star-small.a-star-small-4-5.aok-align-bottom")
+product_ratings <- product_ratings[1:41]
+
+total_review <- scrapeNodes("span.a-size-base.s-underline-text")
+total_review <- total_review[1:41]
+
+product <- rbind(producdf, data.frame(Name = product_name,
+                      Price = product_price,
+                      Ratings = product_ratings,
+                      TotalReview = total_review))
+
+
+
+```
+
+```{r}
+#url2
+
+
+url2<-"https://www.amazon.co.uk/s?k=shoes&page=2&crid=1YW0YCJDGWCRU&qid=1707355577&sprefix=shoes+f%2Caps%2C280&ref=sr_pg_2"
+
+producdf2 <- data.frame()
+
+session2 <- bow(url2,
+              user_agent = "For Educational Purposes")
+
+
+
+
+ scrapeNodes2 <- function(selector){
+    scrape(session2) %>%
+      html_nodes(selector) %>%
+      html_text(trim = TRUE)
+   
+}
+   
+   
+product_name2 <- scrapeNodes2("span.a-size-base-plus.a-color-base.a-text-normal")
+product_name2 <- product_name2[1:33]
+
+product_price2 <- scrapeNodes2("span.a-price")
+product_price2 <- product_price2[1:33]
+
+product_ratings2 <- scrapeNodes2("i.a-icon.a-icon-star-small.a-star-small-4-5.aok-align-bottom")
+product_ratings2 <- product_ratings2[1:33]
+
+total_review2 <- scrapeNodes2("span.a-size-base.s-underline-text")
+total_review2 <- total_review2[1:33]
+
+product2 <- rbind(producdf2, data.frame(Name = product_name2,
+                      Price = product_price2,
+                      Ratings = product_ratings2,
+                      TotalReview = total_review2))
+
+
+
+
+```
