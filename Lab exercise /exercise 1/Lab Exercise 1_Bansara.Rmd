@@ -104,3 +104,170 @@ product2 <- rbind(producdf2, data.frame(Name = product_name2,
 
 
 ```
+
+
+```{r}
+#url3
+
+url3 <- "https://www.amazon.co.uk/s?k=shoes&page=3&crid=1YW0YCJDGWCRU&qid=1707458979&sprefix=shoes+f%2Caps%2C280&ref=sr_pg_3"
+
+productdf3 <- data.frame()
+
+session3 <- bow(url3,
+              user_agent = "For Educational Purposes")
+
+
+
+
+ scrapeNodes3 <- function(selector){
+    scrape(session3) %>%
+      html_nodes(selector) %>%
+      html_text(trim = TRUE)
+   
+}
+   
+   
+product_name3 <- scrapeNodes3("span.a-size-base-plus.a-color-base.a-text-normal")
+product_name3 <- product_name3[1:35]
+
+product_price3 <- scrapeNodes3("span.a-price")
+product_price3 <- product_price3[1:35]
+
+product_ratings3 <- scrapeNodes3("i.a-icon.a-icon-star-small.a-star-small-4-5.aok-align-bottom")
+product_ratings3 <- product_ratings3[1:35]
+
+total_review3 <- scrapeNodes3("span.a-size-base.s-underline-text")
+total_review3 <- total_review3[1:35]
+
+product3 <- rbind(productdf3, data.frame(Name = product_name3,
+                      Price = product_price3,
+                      Ratings = product_ratings3,
+                      TotalReview = total_review3))
+
+
+```
+
+```{r}
+#url4
+
+url4 <- "https://www.amazon.co.uk/s?k=tshirts+men+uk&crid=22WH7CF846VAE&sprefix=tshirt%2Caps%2C430&ref=nb_sb_ss_ts-doa-p_1_6"
+  
+productdf4 <- data.frame()
+
+session4 <- bow(url4,
+              user_agent = "For Educational Purposes")
+
+
+
+
+ scrapeNodes4 <- function(selector){
+    scrape(session4) %>%
+      html_nodes(selector) %>%
+      html_text(trim = TRUE)
+   
+}
+   
+   
+product_name4 <- scrapeNodes4("span.a-size-base-plus.a-color-base.a-text-normal")
+product_name4 <- product_name4[1:42]
+
+product_price4 <- scrapeNodes4("span.a-price")
+product_price4 <- product_price4[1:42]
+
+product_ratings4 <- scrapeNodes4("i.a-icon.a-icon-star-small.a-star-small-4-5.aok-align-bottom")
+product_ratings4 <- product_ratings4[1:42]
+
+total_review4 <- scrapeNodes4("span.a-size-base.s-underline-text")
+total_review4 <- total_review4[1:42]
+
+product4 <- rbind(productdf4, data.frame(Name = product_name4,
+                      Price = product_price4,
+                      Ratings = product_ratings4,
+                      TotalReview = total_review4))
+
+
+```
+
+
+```{r}
+#url5
+
+url5 <- "https://www.amazon.co.uk/s?k=tshirts+men+uk&page=2&crid=22WH7CF846VAE&qid=1707469052&sprefix=tshirt%2Caps%2C430&ref=sr_pg_2"
+
+productdf5 <- data.frame()
+
+session5 <- bow(url5,
+              user_agent = "For Educational Purposes")
+
+
+
+
+ scrapeNodes5 <- function(selector){
+    scrape(session5) %>%
+      html_nodes(selector) %>%
+      html_text(trim = TRUE)
+   
+}
+   
+   
+product_name5 <- scrapeNodes5("span.a-size-base-plus.a-color-base.a-text-normal")
+product_name5 <- product_name5[1:42]
+
+product_price5 <- scrapeNodes5("span.a-price")
+product_price5 <- product_price5[1:42]
+
+product_ratings5 <- scrapeNodes5("i.a-icon.a-icon-star-small.a-star-small-4-5.aok-align-bottom")
+product_ratings5 <- product_ratings5[1:42]
+
+total_review5 <- scrapeNodes5("span.a-size-base.s-underline-text")
+total_review5 <- total_review5[1:42]
+
+product5 <- rbind(productdf5, data.frame(Name = product_name5,
+                      Price = product_price5,
+                      Ratings = product_ratings5,
+                      TotalReview = total_review5))
+
+
+```
+
+```{r}
+url6 <- "https://www.amazon.co.uk/s?k=tshirts+men+uk&page=3&crid=22WH7CF846VAE&qid=1707471189&sprefix=tshirt%2Caps%2C430&ref=sr_pg_3"
+
+
+productdf6 <- data.frame()
+
+session6 <- bow(url6,
+              user_agent = "For Educational Purposes")
+
+
+
+
+ scrapeNodes6 <- function(selector){
+    scrape(session6) %>%
+      html_nodes(selector) %>%
+      html_text(trim = TRUE)
+   
+}
+   
+   
+product_name6 <- scrapeNodes6("span.a-size-base-plus.a-color-base.a-text-normal")
+product_name6 <- product_name6[1:9]
+
+product_price6 <- scrapeNodes6("span.a-price")
+product_price6 <- product_price6[1:9]
+
+product_ratings6 <- scrapeNodes6("i.a-icon.a-icon-star-small.a-star-small-4.aok-align-bottom")
+product_ratings6 <- product_ratings6[1:9]
+
+total_review6 <- scrapeNodes6("span.a-size-base.s-underline-text")
+total_review6 <- total_review6[1:9]
+
+product6 <- rbind(productdf6, data.frame(Name = product_name6,
+                      Price = product_price6,
+                      Ratings = product_ratings6,
+                      TotalReview = total_review6))
+
+
+
+```
+
