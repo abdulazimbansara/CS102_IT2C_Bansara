@@ -1,0 +1,4016 @@
+---
+title: "Lab Exercise 2"
+author: "Abdul Azim P. Bansara"
+date: "2024-02-15"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+library(dplyr)
+library(rvest)
+library(polite)
+library(httr)
+library(selectr)
+library(xml2)
+
+```
+50 reviews of 50 product
+
+```{r}
+
+#product 1 
+
+link1 <- "https://www.amazon.com.au/Fruit-Loom-Mens-Tucked-T-Shirt/product-reviews/B08GB2WDDB/ref=cm_cr_arp_d_paging_btm_next_2?ie=UTF8&reviewerType=all_reviews&pageNumber=2"
+
+
+  session <- bow(link1,
+               user_agent = "For Educational Purpose")
+
+  scrapeNodes <- function(selector){
+    scrape(session) %>%
+      html_nodes(selector) %>%
+      html_text(trim = TRUE)
+  }
+
+  product_category <- rep("T-shirt", 10)
+
+  product_name <- scrapeNodes("h1.a-size-large.a-text-ellipsis")
+  product_name <- rep(product_name, 10)
+  product_name <- product_name[1:10]
+  
+  verified_reviews <-scrapeNodes("span.a-size-mini.a-color-state.a-text-bold")
+  verified_reviews <-verified_reviews[1:10]
+  
+  product_reviewer <- scrapeNodes("span.a-profile-name")
+  product_reviewer <- product_reviewer[1:10]
+  
+  product_review <- scrapeNodes("span.a-size-base.review-text")
+  product_review <- product_review[1:10]
+  
+  product_date <- scrapeNodes("span.a-size-base.a-color-secondary.review-date")
+  product_date <- product_date[1:10]
+  
+  product_rating <- scrapeNodes("span.a-icon-alt")
+  product_rating <- product_rating[1:10]
+  
+  productreviews1= data.frame()
+  productreviews1 <- rbind(productreviews1, data.frame(
+                      category = product_category,
+                      name = product_name,
+                      reviewer = product_reviewer,
+                      reviews = product_review,
+                      verified = verified_reviews,
+                      "date of review" = product_date,
+                      ratings = product_rating))
+
+  
+ Sys.sleep(5)
+
+
+link2 <- "https://www.amazon.com.au/Fruit-Loom-Mens-Tucked-T-Shirt/product-reviews/B08GB2WDDB/ref=cm_cr_getr_d_paging_btm_next_3?ie=UTF8&reviewerType=all_reviews&pageNumber=3"
+
+
+  session <- bow(link2,
+               user_agent = "For Educational Purpose")
+
+  scrapeNodes <- function(selector){
+    scrape(session) %>%
+      html_nodes(selector) %>%
+      html_text(trim = TRUE)
+  }
+
+  product_category <- rep("T-shirt", 8)
+
+  product_name <- scrapeNodes("h1.a-size-large.a-text-ellipsis")
+  product_name <- rep(product_name, 10)
+  product_name <- product_name[1:8]
+  
+  verified_reviews <-scrapeNodes("span.a-size-mini.a-color-state.a-text-bold")
+  verified_reviews <-verified_reviews[1:8]
+  
+  product_reviewer <- scrapeNodes("span.a-profile-name")
+  product_reviewer <- product_reviewer[1:8]
+  
+  product_review <- scrapeNodes("span.a-size-base.review-text")
+  product_review <- product_review[1:8]
+  
+  product_date <- scrapeNodes("span.a-size-base.a-color-secondary.review-date")
+  product_date <- product_date[1:8]
+  
+  product_rating <- scrapeNodes("span.a-icon-alt")
+  product_rating <- product_rating[1:8]
+  
+  productreviews2= data.frame()
+  productreviews2 <- rbind(productreviews2, data.frame(
+                      category = product_category,
+                      name = product_name,
+                      reviewer = product_reviewer,
+                      reviews = product_review,
+                      verified = verified_reviews,
+                      "date of review" = product_date,
+                      ratings = product_rating))
+
+  
+ Sys.sleep(5)
+
+
+link3 <- "https://www.amazon.com.au/Fruit-Loom-Mens-Tucked-T-Shirt/product-reviews/B08GB2WDDB/ref=cm_cr_getr_d_paging_btm_next_4?ie=UTF8&reviewerType=all_reviews&pageNumber=4"
+
+
+  session <- bow(link3,
+               user_agent = "For Educational Purpose")
+
+  scrapeNodes <- function(selector){
+    scrape(session) %>%
+      html_nodes(selector) %>%
+      html_text(trim = TRUE)
+  }
+
+  product_category <- rep("T-shirt", 10)
+
+  product_name <- scrapeNodes("h1.a-size-large.a-text-ellipsis")
+  product_name <- rep(product_name, 10)
+  product_name <- product_name[1:10]
+  
+  verified_reviews <-scrapeNodes("span.a-size-mini.a-color-state.a-text-bold")
+  verified_reviews <-verified_reviews[1:10]
+  
+  product_reviewer <- scrapeNodes("span.a-profile-name")
+  product_reviewer <- product_reviewer[1:10]
+  
+  product_review <- scrapeNodes("span.a-size-base.review-text")
+  product_review <- product_review[1:10]
+  
+  product_date <- scrapeNodes("span.a-size-base.a-color-secondary.review-date")
+  product_date <- product_date[1:10]
+  
+  product_rating <- scrapeNodes("span.a-icon-alt")
+  product_rating <- product_rating[1:10]
+  
+  productreviews3= data.frame()
+  productreviews3 <- rbind(productreviews3, data.frame(
+                      category = product_category,
+                      name = product_name,
+                      reviewer = product_reviewer,
+                      reviews = product_review,
+                      verified = verified_reviews,
+                      "date of review" = product_date,
+                      ratings = product_rating))
+
+  
+ Sys.sleep(5)
+
+
+
+link4 <- "https://www.amazon.com.au/Fruit-Loom-Mens-Tucked-T-Shirt/product-reviews/B08GB2WDDB/ref=cm_cr_getr_d_paging_btm_next_5?ie=UTF8&reviewerType=all_reviews&pageNumber=5"
+
+
+  session <- bow(link4,
+               user_agent = "For Educational Purpose")
+
+  scrapeNodes <- function(selector){
+    scrape(session) %>%
+      html_nodes(selector) %>%
+      html_text(trim = TRUE)
+  }
+
+  product_category <- rep("T-shirt", 10)
+
+  product_name <- scrapeNodes("h1.a-size-large.a-text-ellipsis")
+  product_name <- rep(product_name, 10)
+  product_name <- product_name[1:10]
+  
+  verified_reviews <-scrapeNodes("span.a-size-mini.a-color-state.a-text-bold")
+  verified_reviews <-verified_reviews[1:10]
+  
+  product_reviewer <- scrapeNodes("span.a-profile-name")
+  product_reviewer <- product_reviewer[1:10]
+  
+  product_review <- scrapeNodes("span.a-size-base.review-text.review-text-content")
+  product_review <- product_review[1:10]
+  
+  product_date <- scrapeNodes("span.a-size-base.a-color-secondary.review-date")
+  product_date <- product_date[1:10]
+  
+  product_rating <- scrapeNodes("span.a-icon-alt")
+  product_rating <- product_rating[1:10]
+  
+  productreviews4= data.frame()
+  productreviews4 <- rbind(productreviews4, data.frame(
+                      category = product_category,
+                      name = product_name,
+                      reviewer = product_reviewer,
+                      reviews = product_review,
+                      verified = verified_reviews,
+                      "date of review" = product_date,
+                      ratings = product_rating))
+
+  
+ Sys.sleep(5)
+
+
+link5 <- "https://www.amazon.com.au/Fruit-Loom-Mens-Tucked-T-Shirt/product-reviews/B08GB2WDDB/ref=cm_cr_dp_d_show_all_btm?ie=UTF8&reviewerType=all_reviews"
+
+
+  session <- bow(link5,
+               user_agent = "For Educational Purpose")
+
+  scrapeNodes <- function(selector){
+    scrape(session) %>%
+      html_nodes(selector) %>%
+      html_text(trim = TRUE)
+  }
+
+  product_category <- rep("T-shirt", 10)
+
+  product_name <- scrapeNodes("h1.a-size-large.a-text-ellipsis")
+  product_name <- rep(product_name, 10)
+  product_name <- product_name[1:10]
+  
+  verified_reviews <-scrapeNodes("span.a-size-mini.a-color-state.a-text-bold")
+  verified_reviews <-verified_reviews[1:10]
+  
+  product_reviewer <- scrapeNodes("span.a-profile-name")
+  product_reviewer <- product_reviewer[1:10]
+  
+  product_review <- scrapeNodes("span.a-size-base.review-text")
+  product_review <- product_review[1:10]
+  
+  product_date <- scrapeNodes("span.a-size-base.a-color-secondary.review-date")
+  product_date <- product_date[1:10]
+  
+  product_rating <- scrapeNodes("span.a-icon-alt")
+  product_rating <- product_rating[1:10]
+  
+  productreviews5= data.frame()
+  productreviews5 <- rbind(productreviews5, data.frame(
+                      category = product_category,
+                      name = product_name,
+                      reviewer = product_reviewer,
+                      reviews = product_review,
+                      verified = verified_reviews,
+                      "date of review" = product_date,
+                      ratings = product_rating))
+
+  
+ Sys.sleep(5)
+ 
+ #additional 2
+ 
+ link5_2 <- "https://www.amazon.com.au/Fruit-Loom-Mens-Tucked-T-Shirt/product-reviews/B08GB2WDDB/ref=cm_cr_getr_d_paging_btm_next_6?ie=UTF8&reviewerType=all_reviews&pageNumber=6"
+ 
+  session <- bow(link5_2,
+               user_agent = "For Educational Purpose")
+
+  scrapeNodes <- function(selector){
+    scrape(session) %>%
+      html_nodes(selector) %>%
+      html_text(trim = TRUE)
+  }
+
+  product_category <- rep("T-shirt", 2)
+
+  product_name <- scrapeNodes("h1.a-size-large.a-text-ellipsis")
+  product_name <- rep(product_name, 2)
+  product_name <- product_name[1:2]
+  
+  verified_reviews <-scrapeNodes("span.a-size-mini.a-color-state.a-text-bold")
+  verified_reviews <-verified_reviews[1:2]
+  
+  product_reviewer <- scrapeNodes("span.a-profile-name")
+  product_reviewer <- product_reviewer[1:2]
+  
+  product_review <- scrapeNodes("span.a-size-base.review-text")
+  product_review <- product_review[1:2]
+  
+  product_date <- scrapeNodes("span.a-size-base.a-color-secondary.review-date")
+  product_date <- product_date[1:2]
+  
+  product_rating <- scrapeNodes("span.a-icon-alt")
+  product_rating <- product_rating[1:2]
+  
+  productreviews5_2= data.frame()
+  productreviews5_2 <- rbind(productreviews5_2, data.frame(
+                      category = product_category,
+                      name = product_name,
+                      reviewer = product_reviewer,
+                      reviews = product_review,
+                      verified = verified_reviews,
+                      "date of review" = product_date,
+                      ratings = product_rating))
+
+productrev1 <- rbind(productreviews5,productreviews1,productreviews2,productreviews3,productreviews4,productreviews5_2) 
+
+write.csv(productrev1, file = "productrev1.csv")
+```
+
+product 2
+
+```{r}
+link1 <- "https://www.amazon.com.au/Carhartt-K87-Workwear-Short-Sleeve-T-Shirt/product-reviews/B07B12XVTL/ref=cm_cr_dp_d_show_all_btm?ie=UTF8&reviewerType=all_reviews"
+
+
+  session <- bow(link1,
+               user_agent = "For Educational Purpose")
+
+  scrapeNodes <- function(selector){
+    scrape(session) %>%
+      html_nodes(selector) %>%
+      html_text(trim = TRUE)
+  }
+
+  product_category <- rep("T-shirt", 9)
+
+  product_name <- scrapeNodes("h1.a-size-large.a-text-ellipsis")
+  product_name <- rep(product_name, 9)
+  product_name <- product_name[1:9]
+  
+  verified_reviews <-scrapeNodes("span.a-size-mini.a-color-state.a-text-bold")
+  verified_reviews <-verified_reviews[1:9]
+  
+  product_reviewer <- scrapeNodes("span.a-profile-name")
+  product_reviewer <- product_reviewer[1:9]
+  
+  product_review <- scrapeNodes("span.a-size-base.review-text")
+  product_review <- product_review[1:9]
+  
+  product_date <- scrapeNodes("span.a-size-base.a-color-secondary.review-date")
+  product_date <- product_date[1:9]
+  
+  product_rating <- scrapeNodes("span.a-icon-alt")
+  product_rating <- product_rating[1:9]
+  
+  productreviews1= data.frame()
+  productreviews1 <- rbind(productreviews1, data.frame(
+                      category = product_category,
+                      name = product_name,
+                      reviewer = product_reviewer,
+                      reviews = product_review,
+                      verified = verified_reviews,
+                      "date of review" = product_date,
+                      ratings = product_rating))
+
+  
+ Sys.sleep(5)
+
+
+link2 <- "https://www.amazon.com.au/Carhartt-K87-Workwear-Short-Sleeve-T-Shirt/product-reviews/B07B12XVTL/ref=cm_cr_arp_d_paging_btm_next_2?ie=UTF8&reviewerType=all_reviews&pageNumber=2"
+
+
+  session <- bow(link2,
+               user_agent = "For Educational Purpose")
+
+  scrapeNodes <- function(selector){
+    scrape(session) %>%
+      html_nodes(selector) %>%
+      html_text(trim = TRUE)
+  }
+
+  product_category <- rep("T-shirt", 10)
+
+  product_name <- scrapeNodes("h1.a-size-large.a-text-ellipsis")
+  product_name <- rep(product_name, 10)
+  product_name <- product_name[1:10]
+  
+  verified_reviews <-scrapeNodes("span.a-size-mini.a-color-state.a-text-bold")
+  verified_reviews <-verified_reviews[1:10]
+  
+  product_reviewer <- scrapeNodes("span.a-profile-name")
+  product_reviewer <- product_reviewer[1:10]
+  
+  product_review <- scrapeNodes("span.a-size-base.review-text")
+  product_review <- product_review[1:10]
+  
+  product_date <- scrapeNodes("span.a-size-base.a-color-secondary.review-date")
+  product_date <- product_date[1:10]
+  
+  product_rating <- scrapeNodes("span.a-icon-alt")
+  product_rating <- product_rating[1:10]
+  
+  productreviews2= data.frame()
+  productreviews2 <- rbind(productreviews2, data.frame(
+                      category = product_category,
+                      name = product_name,
+                      reviewer = product_reviewer,
+                      reviews = product_review,
+                      verified = verified_reviews,
+                      "date of review" = product_date,
+                      ratings = product_rating))
+
+  
+ Sys.sleep(5)
+
+link3 <- "https://www.amazon.com.au/Carhartt-K87-Workwear-Short-Sleeve-T-Shirt/product-reviews/B07B12XVTL/ref=cm_cr_getr_d_paging_btm_next_3?ie=UTF8&reviewerType=all_reviews&pageNumber=3"
+
+
+  session <- bow(link3,
+               user_agent = "For Educational Purpose")
+
+  scrapeNodes <- function(selector){
+    scrape(session) %>%
+      html_nodes(selector) %>%
+      html_text(trim = TRUE)
+  }
+
+  product_category <- rep("T-shirt", 10)
+
+  product_name <- scrapeNodes("h1.a-size-large.a-text-ellipsis")
+  product_name <- rep(product_name, 10)
+  product_name <- product_name[1:10]
+  
+  verified_reviews <-scrapeNodes("span.a-size-mini.a-color-state.a-text-bold")
+  verified_reviews <-verified_reviews[1:10]
+  
+  product_reviewer <- scrapeNodes("span.a-profile-name")
+  product_reviewer <- product_reviewer[1:10]
+  
+  product_review <- scrapeNodes("span.a-size-base.review-text")
+  product_review <- product_review[1:10]
+  
+  product_date <- scrapeNodes("span.a-size-base.a-color-secondary.review-date")
+  product_date <- product_date[1:10]
+  
+  product_rating <- scrapeNodes("span.a-icon-alt")
+  product_rating <- product_rating[1:10]
+  
+  productreviews3= data.frame()
+  productreviews3 <- rbind(productreviews3, data.frame(
+                      category = product_category,
+                      name = product_name,
+                      reviewer = product_reviewer,
+                      reviews = product_review,
+                      verified = verified_reviews,
+                      "date of review" = product_date,
+                      ratings = product_rating))
+
+  
+ Sys.sleep(5)
+
+
+link4 <- "https://www.amazon.com.au/Carhartt-K87-Workwear-Short-Sleeve-T-Shirt/product-reviews/B07B12XVTL/ref=cm_cr_getr_d_paging_btm_next_4?ie=UTF8&reviewerType=all_reviews&pageNumber=4"
+
+
+  session <- bow(link4,
+               user_agent = "For Educational Purpose")
+
+  scrapeNodes <- function(selector){
+    scrape(session) %>%
+      html_nodes(selector) %>%
+      html_text(trim = TRUE)
+  }
+
+  product_category <- rep("T-shirt", 10)
+
+  product_name <- scrapeNodes("h1.a-size-large.a-text-ellipsis")
+  product_name <- rep(product_name, 10)
+  product_name <- product_name[1:10]
+  
+  verified_reviews <-scrapeNodes("span.a-size-mini.a-color-state.a-text-bold")
+  verified_reviews <-verified_reviews[1:10]
+  
+  product_reviewer <- scrapeNodes("span.a-profile-name")
+  product_reviewer <- product_reviewer[1:10]
+  
+  product_review <- scrapeNodes("span.a-size-base.review-text")
+  product_review <- product_review[1:10]
+  
+  product_date <- scrapeNodes("span.a-size-base.a-color-secondary.review-date")
+  product_date <- product_date[1:10]
+  
+  product_rating <- scrapeNodes("span.a-icon-alt")
+  product_rating <- product_rating[1:10]
+  
+  productreviews4= data.frame()
+  productreviews4 <- rbind(productreviews4, data.frame(
+                      category = product_category,
+                      name = product_name,
+                      reviewer = product_reviewer,
+                      reviews = product_review,
+                      verified = verified_reviews,
+                      "date of review" = product_date,
+                      ratings = product_rating))
+
+  
+ Sys.sleep(5)
+
+
+link5 <- "https://www.amazon.com.au/Carhartt-K87-Workwear-Short-Sleeve-T-Shirt/product-reviews/B07B12XVTL/ref=cm_cr_getr_d_paging_btm_next_5?ie=UTF8&reviewerType=all_reviews&pageNumber=5"
+
+
+  session <- bow(link5,
+               user_agent = "For Educational Purpose")
+
+  scrapeNodes <- function(selector){
+    scrape(session) %>%
+      html_nodes(selector) %>%
+      html_text(trim = TRUE)
+  }
+
+  product_category <- rep("T-shirt", 10)
+
+  product_name <- scrapeNodes("h1.a-size-large.a-text-ellipsis")
+  product_name <- rep(product_name, 10)
+  product_name <- product_name[1:10]
+  
+  verified_reviews <-scrapeNodes("span.a-size-mini.a-color-state.a-text-bold")
+  verified_reviews <-verified_reviews[1:10]
+  
+  product_reviewer <- scrapeNodes("span.a-profile-name")
+  product_reviewer <- product_reviewer[1:10]
+  
+  product_review <- scrapeNodes("span.a-size-base.review-text")
+  product_review <- product_review[1:10]
+  
+  product_date <- scrapeNodes("span.a-size-base.a-color-secondary.review-date")
+  product_date <- product_date[1:10]
+  
+  product_rating <- scrapeNodes("span.a-icon-alt")
+  product_rating <- product_rating[1:10]
+  
+  productreviews5= data.frame()
+  productreviews5 <- rbind(productreviews5, data.frame(
+                      category = product_category,
+                      name = product_name,
+                      reviewer = product_reviewer,
+                      reviews = product_review,
+                      verified = verified_reviews,
+                      "date of review" = product_date,
+                      ratings = product_rating))
+  
+  
+  #addtionioal 1
+  link6 <- "https://www.amazon.com.au/Carhartt-K87-Workwear-Short-Sleeve-T-Shirt/product-reviews/B07B12XVTL/ref=cm_cr_getr_d_paging_btm_next_5?ie=UTF8&reviewerType=all_reviews&pageNumber=5"
+
+
+  session <- bow(link6,
+               user_agent = "For Educational Purpose")
+
+  scrapeNodes <- function(selector){
+    scrape(session) %>%
+      html_nodes(selector) %>%
+      html_text(trim = TRUE)
+  }
+
+  product_category <- rep("T-shirt", 10)
+
+  product_name <- scrapeNodes("h1.a-size-large.a-text-ellipsis")
+  product_name <- rep(product_name, 10)
+  product_name <- product_name[1:10]
+  
+  verified_reviews <-scrapeNodes("span.a-size-mini.a-color-state.a-text-bold")
+  verified_reviews <-verified_reviews[1:10]
+  
+  product_reviewer <- scrapeNodes("span.a-profile-name")
+  product_reviewer <- product_reviewer[1:10]
+  
+  product_review <- scrapeNodes("span.a-size-base.review-text")
+  product_review <- product_review[1:10]
+  
+  product_date <- scrapeNodes("span.a-size-base.a-color-secondary.review-date")
+  product_date <- product_date[1:10]
+  
+  product_rating <- scrapeNodes("span.a-icon-alt")
+  product_rating <- product_rating[1:10]
+  
+  productreviews6= data.frame()
+  productreviews6 <- rbind(productreviews6, data.frame(
+                      category = product_category,
+                      name = product_name,
+                      reviewer = product_reviewer,
+                      reviews = product_review,
+                      verified = verified_reviews,
+                      "date of review" = product_date,
+                      ratings = product_rating))
+  
+  
+
+  
+ Sys.sleep(5)
+ 
+ 
+ productrev2 <- rbind(productreviews1,productreviews2,productreviews3,productreviews4,productreviews5,productreviews6)
+ 
+ write.csv(productrev2, file = "productrev2.csv")
+
+```
+
+product 3
+
+```{r}
+link1 <- "https://www.amazon.com.au/Gildan-G1100/product-reviews/B0CVXTYRJ8/ref=cm_cr_dp_d_show_all_btm?ie=UTF8&reviewerType=all_reviews"
+
+
+  session <- bow(link1,
+               user_agent = "For Educational Purpose")
+
+  scrapeNodes <- function(selector){
+    scrape(session) %>%
+      html_nodes(selector) %>%
+      html_text(trim = TRUE)
+  }
+
+  product_category <- rep("T-shirt", 10)
+
+  product_name <- scrapeNodes("h1.a-size-large.a-text-ellipsis")
+  product_name <- rep(product_name, 10)
+  product_name <- product_name[1:10]
+  
+  verified_reviews <-scrapeNodes("span.a-size-mini.a-color-state.a-text-bold")
+  verified_reviews <-verified_reviews[1:10]
+  
+  product_reviewer <- scrapeNodes("span.a-profile-name")
+  product_reviewer <- product_reviewer[1:10]
+  
+  product_review <- scrapeNodes("span.a-size-base.review-text")
+  product_review <- product_review[1:10]
+  
+  product_date <- scrapeNodes("span.a-size-base.a-color-secondary.review-date")
+  product_date <- product_date[1:10]
+  
+  product_rating <- scrapeNodes("span.a-icon-alt")
+  product_rating <- product_rating[1:10]
+  
+  productreviews1= data.frame()
+  productreviews1 <- rbind(productreviews1, data.frame(
+                      category = product_category,
+                      name = product_name,
+                      reviewer = product_reviewer,
+                      reviews = product_review,
+                      verified = verified_reviews,
+                      "date of review" = product_date,
+                      ratings = product_rating))
+
+  
+ Sys.sleep(5)
+
+
+link2 <- "https://www.amazon.com.au/Gildan-G1100/product-reviews/B0CVXTYRJ8/ref=cm_cr_arp_d_paging_btm_next_2?ie=UTF8&reviewerType=all_reviews&pageNumber=2"
+
+
+  session <- bow(link2,
+               user_agent = "For Educational Purpose")
+
+  scrapeNodes <- function(selector){
+    scrape(session) %>%
+      html_nodes(selector) %>%
+      html_text(trim = TRUE)
+  }
+
+  product_category <- rep("T-shirt", 10)
+
+  product_name <- scrapeNodes("h1.a-size-large.a-text-ellipsis")
+  product_name <- rep(product_name, 10)
+  product_name <- product_name[1:10]
+  
+  verified_reviews <-scrapeNodes("span.a-size-mini.a-color-state.a-text-bold")
+  verified_reviews <-verified_reviews[1:10]
+  
+  product_reviewer <- scrapeNodes("span.a-profile-name")
+  product_reviewer <- product_reviewer[1:10]
+  
+  product_review <- scrapeNodes("span.a-size-base.review-text")
+  product_review <- product_review[1:10]
+  
+  product_date <- scrapeNodes("span.a-size-base.a-color-secondary.review-date")
+  product_date <- product_date[1:10]
+  
+  product_rating <- scrapeNodes("span.a-icon-alt")
+  product_rating <- product_rating[1:10]
+  
+  productreviews2= data.frame()
+  productreviews2 <- rbind(productreviews2, data.frame(
+                      category = product_category,
+                      name = product_name,
+                      reviewer = product_reviewer,
+                      reviews = product_review,
+                      verified = verified_reviews,
+                      "date of review" = product_date,
+                      ratings = product_rating))
+
+  
+ Sys.sleep(5)
+
+link3 <- "https://www.amazon.com.au/Gildan-G1100/product-reviews/B0CVXTYRJ8/ref=cm_cr_getr_d_paging_btm_next_3?ie=UTF8&reviewerType=all_reviews&pageNumber=3"
+
+
+  session <- bow(link3,
+               user_agent = "For Educational Purpose")
+
+  scrapeNodes <- function(selector){
+    scrape(session) %>%
+      html_nodes(selector) %>%
+      html_text(trim = TRUE)
+  }
+
+  product_category <- rep("T-shirt", 10)
+
+  product_name <- scrapeNodes("h1.a-size-large.a-text-ellipsis")
+  product_name <- rep(product_name, 10)
+  product_name <- product_name[1:10]
+  
+  verified_reviews <-scrapeNodes("span.a-size-mini.a-color-state.a-text-bold")
+  verified_reviews <-verified_reviews[1:10]
+  
+  product_reviewer <- scrapeNodes("span.a-profile-name")
+  product_reviewer <- product_reviewer[1:10]
+  
+  product_review <- scrapeNodes("span.a-size-base.review-text")
+  product_review <- product_review[1:10]
+  
+  product_date <- scrapeNodes("span.a-size-base.a-color-secondary.review-date")
+  product_date <- product_date[1:10]
+  
+  product_rating <- scrapeNodes("span.a-icon-alt")
+  product_rating <- product_rating[1:10]
+  
+  productreviews3= data.frame()
+  productreviews3 <- rbind(productreviews3, data.frame(
+                      category = product_category,
+                      name = product_name,
+                      reviewer = product_reviewer,
+                      reviews = product_review,
+                      verified = verified_reviews,
+                      "date of review" = product_date,
+                      ratings = product_rating))
+
+  
+ Sys.sleep(5)
+
+
+link4 <- "https://www.amazon.com.au/Gildan-G1100/product-reviews/B0CVXTYRJ8/ref=cm_cr_getr_d_paging_btm_next_4?ie=UTF8&reviewerType=all_reviews&pageNumber=4"
+
+
+  session <- bow(link4,
+               user_agent = "For Educational Purpose")
+
+  scrapeNodes <- function(selector){
+    scrape(session) %>%
+      html_nodes(selector) %>%
+      html_text(trim = TRUE)
+  }
+
+  product_category <- rep("T-shirt", 9)
+
+  product_name <- scrapeNodes("h1.a-size-large.a-text-ellipsis")
+  product_name <- rep(product_name, 9)
+  product_name <- product_name[1:9]
+  
+  verified_reviews <-scrapeNodes("span.a-size-mini.a-color-state.a-text-bold")
+  verified_reviews <-verified_reviews[1:9]
+  
+  product_reviewer <- scrapeNodes("span.a-profile-name")
+  product_reviewer <- product_reviewer[1:9]
+  
+  product_review <- scrapeNodes("span.a-size-base.review-text")
+  product_review <- product_review[1:9]
+  
+  product_date <- scrapeNodes("span.a-size-base.a-color-secondary.review-date")
+  product_date <- product_date[1:9]
+  
+  product_rating <- scrapeNodes("span.a-icon-alt")
+  product_rating <- product_rating[1:9]
+  
+  productreviews4= data.frame()
+  productreviews4 <- rbind(productreviews4, data.frame(
+                      category = product_category,
+                      name = product_name,
+                      reviewer = product_reviewer,
+                      reviews = product_review,
+                      verified = verified_reviews,
+                      "date of review" = product_date,
+                      ratings = product_rating))
+
+  
+ Sys.sleep(5)
+
+
+link5 <- "https://www.amazon.com.au/Gildan-G1100/product-reviews/B0CVXTYRJ8/ref=cm_cr_getr_d_paging_btm_next_5?ie=UTF8&reviewerType=all_reviews&pageNumber=5"
+
+
+  session <- bow(link5,
+               user_agent = "For Educational Purpose")
+
+  scrapeNodes <- function(selector){
+    scrape(session) %>%
+      html_nodes(selector) %>%
+      html_text(trim = TRUE)
+  }
+
+  product_category <- rep("T-shirt", 10)
+
+  product_name <- scrapeNodes("h1.a-size-large.a-text-ellipsis")
+  product_name <- rep(product_name, 10)
+  product_name <- product_name[1:10]
+  
+  verified_reviews <-scrapeNodes("span.a-size-mini.a-color-state.a-text-bold")
+  verified_reviews <-verified_reviews[1:10]
+  
+  product_reviewer <- scrapeNodes("span.a-profile-name")
+  product_reviewer <- product_reviewer[1:10]
+  
+  product_review <- scrapeNodes("span.a-size-base.review-text")
+  product_review <- product_review[1:10]
+  
+  product_date <- scrapeNodes("span.a-size-base.a-color-secondary.review-date")
+  product_date <- product_date[1:10]
+  
+  product_rating <- scrapeNodes("span.a-icon-alt")
+  product_rating <- product_rating[1:10]
+  
+  productreviews5= data.frame()
+  productreviews5 <- rbind(productreviews5, data.frame(
+                      category = product_category,
+                      name = product_name,
+                      reviewer = product_reviewer,
+                      reviews = product_review,
+                      verified = verified_reviews,
+                      "date of review" = product_date,
+                      ratings = product_rating))
+  
+  
+  #addtional 
+  link6 <- "https://www.amazon.com.au/Gildan-G1100/product-reviews/B0CVXTYRJ8/ref=cm_cr_getr_d_paging_btm_next_6?ie=UTF8&reviewerType=all_reviews&pageNumber=6"
+
+
+  session <- bow(link6,
+               user_agent = "For Educational Purpose")
+
+  scrapeNodes <- function(selector){
+    scrape(session) %>%
+      html_nodes(selector) %>%
+      html_text(trim = TRUE)
+  }
+
+  product_category <- rep("T-shirt", 10)
+
+  product_name <- scrapeNodes("h1.a-size-large.a-text-ellipsis")
+  product_name <- rep(product_name, 10)
+  product_name <- product_name[1:10]
+  
+  verified_reviews <-scrapeNodes("span.a-size-mini.a-color-state.a-text-bold")
+  verified_reviews <-verified_reviews[1:10]
+  
+  product_reviewer <- scrapeNodes("span.a-profile-name")
+  product_reviewer <- product_reviewer[1:10]
+  
+  product_review <- scrapeNodes("span.a-size-base.review-text")
+  product_review <- product_review[1:10]
+  
+  product_date <- scrapeNodes("span.a-size-base.a-color-secondary.review-date")
+  product_date <- product_date[1:10]
+  
+  product_rating <- scrapeNodes("span.a-icon-alt")
+  product_rating <- product_rating[1:10]
+  
+  productreviews6= data.frame()
+  productreviews6 <- rbind(productreviews6, data.frame(
+                      category = product_category,
+                      name = product_name,
+                      reviewer = product_reviewer,
+                      reviews = product_review,
+                      verified = verified_reviews,
+                      "date of review" = product_date,
+                      ratings = product_rating))
+  
+  
+
+  
+ Sys.sleep(5)
+ 
+ 
+ productrev3 <- rbind(productreviews1,productreviews2,productreviews3,productreviews4,productreviews5,productreviews6)
+ 
+ write.csv(productrev3, file = "productrev3.csv")
+
+```
+
+product 4
+```{r}
+link1 <- "https://www.amazon.com.au/Nautica-Comfort-Cotton-Underwear-Briefs/product-reviews/B077M38D2P/ref=cm_cr_dp_d_show_all_btm?ie=UTF8&reviewerType=all_reviews"
+
+
+  session <- bow(link1,
+               user_agent = "For Educational Purpose")
+
+  scrapeNodes <- function(selector){
+    scrape(session) %>%
+      html_nodes(selector) %>%
+      html_text(trim = TRUE)
+  }
+
+  product_category <- rep("T-shirt", 10)
+
+  product_name <- scrapeNodes("h1.a-size-large.a-text-ellipsis")
+  product_name <- rep(product_name, 10)
+  product_name <- product_name[1:10]
+  
+  verified_reviews <-scrapeNodes("span.a-size-mini.a-color-state.a-text-bold")
+  verified_reviews <-verified_reviews[1:10]
+  
+  product_reviewer <- scrapeNodes("span.a-profile-name")
+  product_reviewer <- product_reviewer[1:10]
+  
+  product_review <- scrapeNodes("span.a-size-base.review-text")
+  product_review <- product_review[1:10]
+  
+  product_date <- scrapeNodes("span.a-size-base.a-color-secondary.review-date")
+  product_date <- product_date[1:10]
+  
+  product_rating <- scrapeNodes("span.a-icon-alt")
+  product_rating <- product_rating[1:10]
+  
+  productreviews1= data.frame()
+  productreviews1 <- rbind(productreviews1, data.frame(
+                      category = product_category,
+                      name = product_name,
+                      reviewer = product_reviewer,
+                      reviews = product_review,
+                      verified = verified_reviews,
+                      "date of review" = product_date,
+                      ratings = product_rating))
+
+  
+ Sys.sleep(5)
+
+
+link2 <- "https://www.amazon.com.au/Nautica-Comfort-Cotton-Underwear-Briefs/product-reviews/B077M38D2P/ref=cm_cr_arp_d_paging_btm_next_2?ie=UTF8&reviewerType=all_reviews&pageNumber=2"
+
+
+  session <- bow(link2,
+               user_agent = "For Educational Purpose")
+
+  scrapeNodes <- function(selector){
+    scrape(session) %>%
+      html_nodes(selector) %>%
+      html_text(trim = TRUE)
+  }
+
+  product_category <- rep("T-shirt", 10)
+
+  product_name <- scrapeNodes("h1.a-size-large.a-text-ellipsis")
+  product_name <- rep(product_name, 10)
+  product_name <- product_name[1:10]
+  
+  verified_reviews <-scrapeNodes("span.a-size-mini.a-color-state.a-text-bold")
+  verified_reviews <-verified_reviews[1:10]
+  
+  product_reviewer <- scrapeNodes("span.a-profile-name")
+  product_reviewer <- product_reviewer[1:10]
+  
+  product_review <- scrapeNodes("span.a-size-base.review-text")
+  product_review <- product_review[1:10]
+  
+  product_date <- scrapeNodes("span.a-size-base.a-color-secondary.review-date")
+  product_date <- product_date[1:10]
+  
+  product_rating <- scrapeNodes("span.a-icon-alt")
+  product_rating <- product_rating[1:10]
+  
+  productreviews2= data.frame()
+  productreviews2 <- rbind(productreviews2, data.frame(
+                      category = product_category,
+                      name = product_name,
+                      reviewer = product_reviewer,
+                      reviews = product_review,
+                      verified = verified_reviews,
+                      "date of review" = product_date,
+                      ratings = product_rating))
+
+  
+ Sys.sleep(5)
+
+link3 <- "https://www.amazon.com.au/Nautica-Comfort-Cotton-Underwear-Briefs/product-reviews/B077M38D2P/ref=cm_cr_getr_d_paging_btm_next_3?ie=UTF8&reviewerType=all_reviews&pageNumber=3"
+
+
+  session <- bow(link3,
+               user_agent = "For Educational Purpose")
+
+  scrapeNodes <- function(selector){
+    scrape(session) %>%
+      html_nodes(selector) %>%
+      html_text(trim = TRUE)
+  }
+
+  product_category <- rep("T-shirt", 10)
+
+  product_name <- scrapeNodes("h1.a-size-large.a-text-ellipsis")
+  product_name <- rep(product_name, 10)
+  product_name <- product_name[1:10]
+  
+  verified_reviews <-scrapeNodes("span.a-size-mini.a-color-state.a-text-bold")
+  verified_reviews <-verified_reviews[1:10]
+  
+  product_reviewer <- scrapeNodes("span.a-profile-name")
+  product_reviewer <- product_reviewer[1:10]
+  
+  product_review <- scrapeNodes("span.a-size-base.review-text")
+  product_review <- product_review[1:10]
+  
+  product_date <- scrapeNodes("span.a-size-base.a-color-secondary.review-date")
+  product_date <- product_date[1:10]
+  
+  product_rating <- scrapeNodes("span.a-icon-alt")
+  product_rating <- product_rating[1:10]
+  
+  productreviews3= data.frame()
+  productreviews3 <- rbind(productreviews3, data.frame(
+                      category = product_category,
+                      name = product_name,
+                      reviewer = product_reviewer,
+                      reviews = product_review,
+                      verified = verified_reviews,
+                      "date of review" = product_date,
+                      ratings = product_rating))
+
+  
+ Sys.sleep(5)
+
+
+link4 <- "https://www.amazon.com.au/Nautica-Comfort-Cotton-Underwear-Briefs/product-reviews/B077M38D2P/ref=cm_cr_getr_d_paging_btm_next_4?ie=UTF8&reviewerType=all_reviews&pageNumber=4"
+
+
+  session <- bow(link4,
+               user_agent = "For Educational Purpose")
+
+  scrapeNodes <- function(selector){
+    scrape(session) %>%
+      html_nodes(selector) %>%
+      html_text(trim = TRUE)
+  }
+
+  product_category <- rep("T-shirt", 10)
+
+  product_name <- scrapeNodes("h1.a-size-large.a-text-ellipsis")
+  product_name <- rep(product_name, 10)
+  product_name <- product_name[1:10]
+  
+  verified_reviews <-scrapeNodes("span.a-size-mini.a-color-state.a-text-bold")
+  verified_reviews <-verified_reviews[1:10]
+  
+  product_reviewer <- scrapeNodes("span.a-profile-name")
+  product_reviewer <- product_reviewer[1:10]
+  
+  product_review <- scrapeNodes("span.a-size-base.review-text")
+  product_review <- product_review[1:10]
+  
+  product_date <- scrapeNodes("span.a-size-base.a-color-secondary.review-date")
+  product_date <- product_date[1:10]
+  
+  product_rating <- scrapeNodes("span.a-icon-alt")
+  product_rating <- product_rating[1:10]
+  
+  productreviews4= data.frame()
+  productreviews4 <- rbind(productreviews4, data.frame(
+                      category = product_category,
+                      name = product_name,
+                      reviewer = product_reviewer,
+                      reviews = product_review,
+                      verified = verified_reviews,
+                      "date of review" = product_date,
+                      ratings = product_rating))
+
+  
+ Sys.sleep(5)
+
+
+link5 <- "https://www.amazon.com.au/Nautica-Comfort-Cotton-Underwear-Briefs/product-reviews/B077M38D2P/ref=cm_cr_getr_d_paging_btm_next_5?ie=UTF8&reviewerType=all_reviews&pageNumber=5"
+
+
+  session <- bow(link5,
+               user_agent = "For Educational Purpose")
+
+  scrapeNodes <- function(selector){
+    scrape(session) %>%
+      html_nodes(selector) %>%
+      html_text(trim = TRUE)
+  }
+
+  product_category <- rep("T-shirt", 10)
+
+  product_name <- scrapeNodes("h1.a-size-large.a-text-ellipsis")
+  product_name <- rep(product_name, 10)
+  product_name <- product_name[1:10]
+  
+  verified_reviews <-scrapeNodes("span.a-size-mini.a-color-state.a-text-bold")
+  verified_reviews <-verified_reviews[1:10]
+  
+  product_reviewer <- scrapeNodes("span.a-profile-name")
+  product_reviewer <- product_reviewer[1:10]
+  
+  product_review <- scrapeNodes("span.a-size-base.review-text")
+  product_review <- product_review[1:10]
+  
+  product_date <- scrapeNodes("span.a-size-base.a-color-secondary.review-date")
+  product_date <- product_date[1:10]
+  
+  product_rating <- scrapeNodes("span.a-icon-alt")
+  product_rating <- product_rating[1:10]
+  
+  productreviews5= data.frame()
+  productreviews5 <- rbind(productreviews5, data.frame(
+                      category = product_category,
+                      name = product_name,
+                      reviewer = product_reviewer,
+                      reviews = product_review,
+                      verified = verified_reviews,
+                      "date of review" = product_date,
+                      ratings = product_rating))
+  
+  
+
+ Sys.sleep(5)
+ 
+ 
+ productrev4 <- rbind(productreviews1,productreviews2,productreviews3,productreviews4,productreviews5)
+ 
+ write.csv(productrev4, file = "productrev4.csv")
+
+```
+
+product 5
+
+```{r}
+link1 <- "https://www.amazon.com.au/Gildan-Heavy-Cotton-T-Shirt-2-Pack/product-reviews/B07MKKPHDT/ref=cm_cr_dp_d_show_all_btm?ie=UTF8&reviewerType=all_reviews"
+
+
+  session <- bow(link1,
+               user_agent = "For Educational Purpose")
+
+  scrapeNodes <- function(selector){
+    scrape(session) %>%
+      html_nodes(selector) %>%
+      html_text(trim = TRUE)
+  }
+
+  product_category <- rep("T-shirt", 10)
+
+  product_name <- scrapeNodes("h1.a-size-large.a-text-ellipsis")
+  product_name <- rep(product_name, 10)
+  product_name <- product_name[1:10]
+  
+  verified_reviews <-scrapeNodes("span.a-size-mini.a-color-state.a-text-bold")
+  verified_reviews <-verified_reviews[1:10]
+  
+  product_reviewer <- scrapeNodes("span.a-profile-name")
+  product_reviewer <- product_reviewer[1:10]
+  
+  product_review <- scrapeNodes("span.a-size-base.review-text")
+  product_review <- product_review[1:10]
+  
+  product_date <- scrapeNodes("span.a-size-base.a-color-secondary.review-date")
+  product_date <- product_date[1:10]
+  
+  product_rating <- scrapeNodes("span.a-icon-alt")
+  product_rating <- product_rating[1:10]
+  
+  productreviews1= data.frame()
+  productreviews1 <- rbind(productreviews1, data.frame(
+                      category = product_category,
+                      name = product_name,
+                      reviewer = product_reviewer,
+                      reviews = product_review,
+                      verified = verified_reviews,
+                      "date of review" = product_date,
+                      ratings = product_rating))
+
+  
+ Sys.sleep(5)
+
+
+link2 <- "https://www.amazon.com.au/Gildan-Heavy-Cotton-T-Shirt-2-Pack/product-reviews/B07MKKPHDT/ref=cm_cr_arp_d_paging_btm_next_2?ie=UTF8&reviewerType=all_reviews&pageNumber=2"
+
+
+  session <- bow(link2,
+               user_agent = "For Educational Purpose")
+
+  scrapeNodes <- function(selector){
+    scrape(session) %>%
+      html_nodes(selector) %>%
+      html_text(trim = TRUE)
+  }
+
+  product_category <- rep("T-shirt", 10)
+
+  product_name <- scrapeNodes("h1.a-size-large.a-text-ellipsis")
+  product_name <- rep(product_name, 10)
+  product_name <- product_name[1:10]
+  
+  verified_reviews <-scrapeNodes("span.a-size-mini.a-color-state.a-text-bold")
+  verified_reviews <-verified_reviews[1:10]
+  
+  product_reviewer <- scrapeNodes("span.a-profile-name")
+  product_reviewer <- product_reviewer[1:10]
+  
+  product_review <- scrapeNodes("span.a-size-base.review-text")
+  product_review <- product_review[1:10]
+  
+  product_date <- scrapeNodes("span.a-size-base.a-color-secondary.review-date")
+  product_date <- product_date[1:10]
+  
+  product_rating <- scrapeNodes("span.a-icon-alt")
+  product_rating <- product_rating[1:10]
+  
+  productreviews2= data.frame()
+  productreviews2 <- rbind(productreviews2, data.frame(
+                      category = product_category,
+                      name = product_name,
+                      reviewer = product_reviewer,
+                      reviews = product_review,
+                      verified = verified_reviews,
+                      "date of review" = product_date,
+                      ratings = product_rating))
+
+  
+ Sys.sleep(5)
+
+link3 <- "https://www.amazon.com.au/Gildan-Heavy-Cotton-T-Shirt-2-Pack/product-reviews/B07MKKPHDT/ref=cm_cr_getr_d_paging_btm_next_3?ie=UTF8&reviewerType=all_reviews&pageNumber=3"
+
+
+  session <- bow(link3,
+               user_agent = "For Educational Purpose")
+
+  scrapeNodes <- function(selector){
+    scrape(session) %>%
+      html_nodes(selector) %>%
+      html_text(trim = TRUE)
+  }
+
+  product_category <- rep("T-shirt", 10)
+
+  product_name <- scrapeNodes("h1.a-size-large.a-text-ellipsis")
+  product_name <- rep(product_name, 10)
+  product_name <- product_name[1:10]
+  
+  verified_reviews <-scrapeNodes("span.a-size-mini.a-color-state.a-text-bold")
+  verified_reviews <-verified_reviews[1:10]
+  
+  product_reviewer <- scrapeNodes("span.a-profile-name")
+  product_reviewer <- product_reviewer[1:10]
+  
+  product_review <- scrapeNodes("span.a-size-base.review-text")
+  product_review <- product_review[1:10]
+  
+  product_date <- scrapeNodes("span.a-size-base.a-color-secondary.review-date")
+  product_date <- product_date[1:10]
+  
+  product_rating <- scrapeNodes("span.a-icon-alt")
+  product_rating <- product_rating[1:10]
+  
+  productreviews3= data.frame()
+  productreviews3 <- rbind(productreviews3, data.frame(
+                      category = product_category,
+                      name = product_name,
+                      reviewer = product_reviewer,
+                      reviews = product_review,
+                      verified = verified_reviews,
+                      "date of review" = product_date,
+                      ratings = product_rating))
+
+  
+ Sys.sleep(5)
+
+
+link4 <- "https://www.amazon.com.au/Gildan-Heavy-Cotton-T-Shirt-2-Pack/product-reviews/B07MKKPHDT/ref=cm_cr_getr_d_paging_btm_next_4?ie=UTF8&reviewerType=all_reviews&pageNumber=4"
+
+
+  session <- bow(link4,
+               user_agent = "For Educational Purpose")
+
+  scrapeNodes <- function(selector){
+    scrape(session) %>%
+      html_nodes(selector) %>%
+      html_text(trim = TRUE)
+  }
+
+  product_category <- rep("T-shirt", 10)
+
+  product_name <- scrapeNodes("h1.a-size-large.a-text-ellipsis")
+  product_name <- rep(product_name, 10)
+  product_name <- product_name[1:10]
+  
+  verified_reviews <-scrapeNodes("span.a-size-mini.a-color-state.a-text-bold")
+  verified_reviews <-verified_reviews[1:10]
+  
+  product_reviewer <- scrapeNodes("span.a-profile-name")
+  product_reviewer <- product_reviewer[1:10]
+  
+  product_review <- scrapeNodes("span.a-size-base.review-text")
+  product_review <- product_review[1:10]
+  
+  product_date <- scrapeNodes("span.a-size-base.a-color-secondary.review-date")
+  product_date <- product_date[1:10]
+  
+  product_rating <- scrapeNodes("span.a-icon-alt")
+  product_rating <- product_rating[1:10]
+  
+  productreviews4= data.frame()
+  productreviews4 <- rbind(productreviews4, data.frame(
+                      category = product_category,
+                      name = product_name,
+                      reviewer = product_reviewer,
+                      reviews = product_review,
+                      verified = verified_reviews,
+                      "date of review" = product_date,
+                      ratings = product_rating))
+
+  
+ Sys.sleep(5)
+
+
+link5 <- "https://www.amazon.com.au/Gildan-Heavy-Cotton-T-Shirt-2-Pack/product-reviews/B07MKKPHDT/ref=cm_cr_getr_d_paging_btm_next_5?ie=UTF8&reviewerType=all_reviews&pageNumber=5"
+
+
+  session <- bow(link5,
+               user_agent = "For Educational Purpose")
+
+  scrapeNodes <- function(selector){
+    scrape(session) %>%
+      html_nodes(selector) %>%
+      html_text(trim = TRUE)
+  }
+
+  product_category <- rep("T-shirt", 10)
+
+  product_name <- scrapeNodes("h1.a-size-large.a-text-ellipsis")
+  product_name <- rep(product_name, 10)
+  product_name <- product_name[1:10]
+  
+  verified_reviews <-scrapeNodes("span.a-size-mini.a-color-state.a-text-bold")
+  verified_reviews <-verified_reviews[1:10]
+  
+  product_reviewer <- scrapeNodes("span.a-profile-name")
+  product_reviewer <- product_reviewer[1:10]
+  
+  product_review <- scrapeNodes("span.a-size-base.review-text")
+  product_review <- product_review[1:10]
+  
+  product_date <- scrapeNodes("span.a-size-base.a-color-secondary.review-date")
+  product_date <- product_date[1:10]
+  
+  product_rating <- scrapeNodes("span.a-icon-alt")
+  product_rating <- product_rating[1:10]
+  
+  productreviews5= data.frame()
+  productreviews5 <- rbind(productreviews5, data.frame(
+                      category = product_category,
+                      name = product_name,
+                      reviewer = product_reviewer,
+                      reviews = product_review,
+                      verified = verified_reviews,
+                      "date of review" = product_date,
+                      ratings = product_rating))
+  
+  
+
+ Sys.sleep(5)
+ 
+ 
+ productrev5 <- rbind(productreviews1,productreviews2,productreviews3,productreviews4,productreviews5)
+ 
+ write.csv(productrev5, file = "productrev5.csv")
+
+```
+
+product 6
+
+```{r}
+link1 <- "https://www.amazon.com.au/Hanes-Mens-Short-Sleeve-Beefy-T/product-reviews/B07DM9HM8X/ref=cm_cr_dp_d_show_all_btm?ie=UTF8&reviewerType=all_reviews"
+
+
+  session <- bow(link1,
+               user_agent = "For Educational Purpose")
+
+  scrapeNodes <- function(selector){
+    scrape(session) %>%
+      html_nodes(selector) %>%
+      html_text(trim = TRUE)
+  }
+
+  product_category <- rep("T-shirt", 10)
+
+  product_name <- scrapeNodes("h1.a-size-large.a-text-ellipsis")
+  product_name <- rep(product_name, 10)
+  product_name <- product_name[1:10]
+  
+  verified_reviews <-scrapeNodes("span.a-size-mini.a-color-state.a-text-bold")
+  verified_reviews <-verified_reviews[1:10]
+  
+  product_reviewer <- scrapeNodes("span.a-profile-name")
+  product_reviewer <- product_reviewer[1:10]
+  
+  product_review <- scrapeNodes("span.a-size-base.review-text")
+  product_review <- product_review[1:10]
+  
+  product_date <- scrapeNodes("span.a-size-base.a-color-secondary.review-date")
+  product_date <- product_date[1:10]
+  
+  product_rating <- scrapeNodes("span.a-icon-alt")
+  product_rating <- product_rating[1:10]
+  
+  productreviews1= data.frame()
+  productreviews1 <- rbind(productreviews1, data.frame(
+                      category = product_category,
+                      name = product_name,
+                      reviewer = product_reviewer,
+                      reviews = product_review,
+                      verified = verified_reviews,
+                      "date of review" = product_date,
+                      ratings = product_rating))
+
+  
+ Sys.sleep(5)
+
+
+link2 <- "https://www.amazon.com.au/Hanes-Mens-Short-Sleeve-Beefy-T/product-reviews/B07DM9HM8X/ref=cm_cr_arp_d_paging_btm_next_2?ie=UTF8&reviewerType=all_reviews&pageNumber=2"
+
+
+  session <- bow(link2,
+               user_agent = "For Educational Purpose")
+
+  scrapeNodes <- function(selector){
+    scrape(session) %>%
+      html_nodes(selector) %>%
+      html_text(trim = TRUE)
+  }
+
+  product_category <- rep("T-shirt", 10)
+
+  product_name <- scrapeNodes("h1.a-size-large.a-text-ellipsis")
+  product_name <- rep(product_name, 10)
+  product_name <- product_name[1:10]
+  
+  verified_reviews <-scrapeNodes("span.a-size-mini.a-color-state.a-text-bold")
+  verified_reviews <-verified_reviews[1:10]
+  
+  product_reviewer <- scrapeNodes("span.a-profile-name")
+  product_reviewer <- product_reviewer[1:10]
+  
+  product_review <- scrapeNodes("span.a-size-base.review-text")
+  product_review <- product_review[1:10]
+  
+  product_date <- scrapeNodes("span.a-size-base.a-color-secondary.review-date")
+  product_date <- product_date[1:10]
+  
+  product_rating <- scrapeNodes("span.a-icon-alt")
+  product_rating <- product_rating[1:10]
+  
+  productreviews2= data.frame()
+  productreviews2 <- rbind(productreviews2, data.frame(
+                      category = product_category,
+                      name = product_name,
+                      reviewer = product_reviewer,
+                      reviews = product_review,
+                      verified = verified_reviews,
+                      "date of review" = product_date,
+                      ratings = product_rating))
+
+  
+ Sys.sleep(5)
+
+link3 <- "https://www.amazon.com.au/Hanes-Mens-Short-Sleeve-Beefy-T/product-reviews/B07DM9HM8X/ref=cm_cr_getr_d_paging_btm_next_3?ie=UTF8&reviewerType=all_reviews&pageNumber=3"
+
+
+  session <- bow(link3,
+               user_agent = "For Educational Purpose")
+
+  scrapeNodes <- function(selector){
+    scrape(session) %>%
+      html_nodes(selector) %>%
+      html_text(trim = TRUE)
+  }
+
+  product_category <- rep("T-shirt", 10)
+
+  product_name <- scrapeNodes("h1.a-size-large.a-text-ellipsis")
+  product_name <- rep(product_name, 10)
+  product_name <- product_name[1:10]
+  
+  verified_reviews <-scrapeNodes("span.a-size-mini.a-color-state.a-text-bold")
+  verified_reviews <-verified_reviews[1:10]
+  
+  product_reviewer <- scrapeNodes("span.a-profile-name")
+  product_reviewer <- product_reviewer[1:10]
+  
+  product_review <- scrapeNodes("span.a-size-base.review-text")
+  product_review <- product_review[1:10]
+  
+  product_date <- scrapeNodes("span.a-size-base.a-color-secondary.review-date")
+  product_date <- product_date[1:10]
+  
+  product_rating <- scrapeNodes("span.a-icon-alt")
+  product_rating <- product_rating[1:10]
+  
+  productreviews3= data.frame()
+  productreviews3 <- rbind(productreviews3, data.frame(
+                      category = product_category,
+                      name = product_name,
+                      reviewer = product_reviewer,
+                      reviews = product_review,
+                      verified = verified_reviews,
+                      "date of review" = product_date,
+                      ratings = product_rating))
+
+  
+ Sys.sleep(5)
+
+
+link4 <- "https://www.amazon.com.au/Hanes-Mens-Short-Sleeve-Beefy-T/product-reviews/B07DM9HM8X/ref=cm_cr_getr_d_paging_btm_next_4?ie=UTF8&reviewerType=all_reviews&pageNumber=4"
+
+
+  session <- bow(link4,
+               user_agent = "For Educational Purpose")
+
+  scrapeNodes <- function(selector){
+    scrape(session) %>%
+      html_nodes(selector) %>%
+      html_text(trim = TRUE)
+  }
+
+  product_category <- rep("T-shirt", 10)
+
+  product_name <- scrapeNodes("h1.a-size-large.a-text-ellipsis")
+  product_name <- rep(product_name, 10)
+  product_name <- product_name[1:10]
+  
+  verified_reviews <-scrapeNodes("span.a-size-mini.a-color-state.a-text-bold")
+  verified_reviews <-verified_reviews[1:10]
+  
+  product_reviewer <- scrapeNodes("span.a-profile-name")
+  product_reviewer <- product_reviewer[1:10]
+  
+  product_review <- scrapeNodes("span.a-size-base.review-text")
+  product_review <- product_review[1:10]
+  
+  product_date <- scrapeNodes("span.a-size-base.a-color-secondary.review-date")
+  product_date <- product_date[1:10]
+  
+  product_rating <- scrapeNodes("span.a-icon-alt")
+  product_rating <- product_rating[1:10]
+  
+  productreviews4= data.frame()
+  productreviews4 <- rbind(productreviews4, data.frame(
+                      category = product_category,
+                      name = product_name,
+                      reviewer = product_reviewer,
+                      reviews = product_review,
+                      verified = verified_reviews,
+                      "date of review" = product_date,
+                      ratings = product_rating))
+
+  
+ Sys.sleep(5)
+
+
+link5 <- "https://www.amazon.com.au/Hanes-Mens-Short-Sleeve-Beefy-T/product-reviews/B07DM9HM8X/ref=cm_cr_getr_d_paging_btm_next_5?ie=UTF8&reviewerType=all_reviews&pageNumber=5"
+
+
+  session <- bow(link5,
+               user_agent = "For Educational Purpose")
+
+  scrapeNodes <- function(selector){
+    scrape(session) %>%
+      html_nodes(selector) %>%
+      html_text(trim = TRUE)
+  }
+
+  product_category <- rep("T-shirt", 10)
+
+  product_name <- scrapeNodes("h1.a-size-large.a-text-ellipsis")
+  product_name <- rep(product_name, 10)
+  product_name <- product_name[1:10]
+  
+  verified_reviews <-scrapeNodes("span.a-size-mini.a-color-state.a-text-bold")
+  verified_reviews <-verified_reviews[1:10]
+  
+  product_reviewer <- scrapeNodes("span.a-profile-name")
+  product_reviewer <- product_reviewer[1:10]
+  
+  product_review <- scrapeNodes("span.a-size-base.review-text")
+  product_review <- product_review[1:10]
+  
+  product_date <- scrapeNodes("span.a-size-base.a-color-secondary.review-date")
+  product_date <- product_date[1:10]
+  
+  product_rating <- scrapeNodes("span.a-icon-alt")
+  product_rating <- product_rating[1:10]
+  
+  productreviews5= data.frame()
+  productreviews5 <- rbind(productreviews5, data.frame(
+                      category = product_category,
+                      name = product_name,
+                      reviewer = product_reviewer,
+                      reviews = product_review,
+                      verified = verified_reviews,
+                      "date of review" = product_date,
+                      ratings = product_rating))
+  
+  
+
+ Sys.sleep(5)
+ 
+ 
+ productrev6 <- rbind(productreviews1,productreviews2,productreviews3,productreviews4,productreviews5)
+ 
+ write.csv(productrev6, file = "productrev6.csv")
+
+```
+
+product 7
+
+```{r}
+link1 <- "https://www.amazon.com.au/Lucky-Brand-Venice-Burnout-Notch/product-reviews/B07994LRX3/ref=cm_cr_dp_d_show_all_btm?ie=UTF8&reviewerType=all_reviews"
+
+
+  session <- bow(link1,
+               user_agent = "For Educational Purpose")
+
+  scrapeNodes <- function(selector){
+    scrape(session) %>%
+      html_nodes(selector) %>%
+      html_text(trim = TRUE)
+  }
+
+  product_category <- rep("T-shirt", 10)
+
+  product_name <- scrapeNodes("h1.a-size-large.a-text-ellipsis")
+  product_name <- rep(product_name, 10)
+  product_name <- product_name[1:10]
+  
+  verified_reviews <-scrapeNodes("span.a-size-mini.a-color-state.a-text-bold")
+  verified_reviews <-verified_reviews[1:10]
+  
+  product_reviewer <- scrapeNodes("span.a-profile-name")
+  product_reviewer <- product_reviewer[1:10]
+  
+  product_review <- scrapeNodes("span.a-size-base.review-text")
+  product_review <- product_review[1:10]
+  
+  product_date <- scrapeNodes("span.a-size-base.a-color-secondary.review-date")
+  product_date <- product_date[1:10]
+  
+  product_rating <- scrapeNodes("span.a-icon-alt")
+  product_rating <- product_rating[1:10]
+  
+  productreviews1= data.frame()
+  productreviews1 <- rbind(productreviews1, data.frame(
+                      category = product_category,
+                      name = product_name,
+                      reviewer = product_reviewer,
+                      reviews = product_review,
+                      verified = verified_reviews,
+                      "date of review" = product_date,
+                      ratings = product_rating))
+
+  
+ Sys.sleep(5)
+
+
+link2 <- "https://www.amazon.com.au/Lucky-Brand-Venice-Burnout-Notch/product-reviews/B07994LRX3/ref=cm_cr_arp_d_paging_btm_next_2?ie=UTF8&reviewerType=all_reviews&pageNumber=2"
+
+
+  session <- bow(link2,
+               user_agent = "For Educational Purpose")
+
+  scrapeNodes <- function(selector){
+    scrape(session) %>%
+      html_nodes(selector) %>%
+      html_text(trim = TRUE)
+  }
+
+  product_category <- rep("T-shirt", 10)
+
+  product_name <- scrapeNodes("h1.a-size-large.a-text-ellipsis")
+  product_name <- rep(product_name, 10)
+  product_name <- product_name[1:10]
+  
+  verified_reviews <-scrapeNodes("span.a-size-mini.a-color-state.a-text-bold")
+  verified_reviews <-verified_reviews[1:10]
+  
+  product_reviewer <- scrapeNodes("span.a-profile-name")
+  product_reviewer <- product_reviewer[1:10]
+  
+  product_review <- scrapeNodes("span.a-size-base.review-text")
+  product_review <- product_review[1:10]
+  
+  product_date <- scrapeNodes("span.a-size-base.a-color-secondary.review-date")
+  product_date <- product_date[1:10]
+  
+  product_rating <- scrapeNodes("span.a-icon-alt")
+  product_rating <- product_rating[1:10]
+  
+  productreviews2= data.frame()
+  productreviews2 <- rbind(productreviews2, data.frame(
+                      category = product_category,
+                      name = product_name,
+                      reviewer = product_reviewer,
+                      reviews = product_review,
+                      verified = verified_reviews,
+                      "date of review" = product_date,
+                      ratings = product_rating))
+
+  
+ Sys.sleep(5)
+
+link3 <- "https://www.amazon.com.au/Lucky-Brand-Venice-Burnout-Notch/product-reviews/B07994LRX3/ref=cm_cr_getr_d_paging_btm_next_3?ie=UTF8&reviewerType=all_reviews&pageNumber=3"
+
+
+  session <- bow(link3,
+               user_agent = "For Educational Purpose")
+
+  scrapeNodes <- function(selector){
+    scrape(session) %>%
+      html_nodes(selector) %>%
+      html_text(trim = TRUE)
+  }
+
+  product_category <- rep("T-shirt", 10)
+
+  product_name <- scrapeNodes("h1.a-size-large.a-text-ellipsis")
+  product_name <- rep(product_name, 10)
+  product_name <- product_name[1:10]
+  
+  verified_reviews <-scrapeNodes("span.a-size-mini.a-color-state.a-text-bold")
+  verified_reviews <-verified_reviews[1:10]
+  
+  product_reviewer <- scrapeNodes("span.a-profile-name")
+  product_reviewer <- product_reviewer[1:10]
+  
+  product_review <- scrapeNodes("span.a-size-base.review-text")
+  product_review <- product_review[1:10]
+  
+  product_date <- scrapeNodes("span.a-size-base.a-color-secondary.review-date")
+  product_date <- product_date[1:10]
+  
+  product_rating <- scrapeNodes("span.a-icon-alt")
+  product_rating <- product_rating[1:10]
+  
+  productreviews3= data.frame()
+  productreviews3 <- rbind(productreviews3, data.frame(
+                      category = product_category,
+                      name = product_name,
+                      reviewer = product_reviewer,
+                      reviews = product_review,
+                      verified = verified_reviews,
+                      "date of review" = product_date,
+                      ratings = product_rating))
+
+  
+ Sys.sleep(5)
+
+
+link4 <- "https://www.amazon.com.au/Lucky-Brand-Venice-Burnout-Notch/product-reviews/B07994LRX3/ref=cm_cr_getr_d_paging_btm_next_4?ie=UTF8&reviewerType=all_reviews&pageNumber=4"
+
+
+  session <- bow(link4,
+               user_agent = "For Educational Purpose")
+
+  scrapeNodes <- function(selector){
+    scrape(session) %>%
+      html_nodes(selector) %>%
+      html_text(trim = TRUE)
+  }
+
+  product_category <- rep("T-shirt", 10)
+
+  product_name <- scrapeNodes("h1.a-size-large.a-text-ellipsis")
+  product_name <- rep(product_name, 10)
+  product_name <- product_name[1:10]
+  
+  verified_reviews <-scrapeNodes("span.a-size-mini.a-color-state.a-text-bold")
+  verified_reviews <-verified_reviews[1:10]
+  
+  product_reviewer <- scrapeNodes("span.a-profile-name")
+  product_reviewer <- product_reviewer[1:10]
+  
+  product_review <- scrapeNodes("span.a-size-base.review-text")
+  product_review <- product_review[1:10]
+  
+  product_date <- scrapeNodes("span.a-size-base.a-color-secondary.review-date")
+  product_date <- product_date[1:10]
+  
+  product_rating <- scrapeNodes("span.a-icon-alt")
+  product_rating <- product_rating[1:10]
+  
+  productreviews4= data.frame()
+  productreviews4 <- rbind(productreviews4, data.frame(
+                      category = product_category,
+                      name = product_name,
+                      reviewer = product_reviewer,
+                      reviews = product_review,
+                      verified = verified_reviews,
+                      "date of review" = product_date,
+                      ratings = product_rating))
+
+  
+ Sys.sleep(5)
+
+
+link5 <- "https://www.amazon.com.au/Lucky-Brand-Venice-Burnout-Notch/product-reviews/B07994LRX3/ref=cm_cr_getr_d_paging_btm_next_5?ie=UTF8&reviewerType=all_reviews&pageNumber=5"
+
+
+  session <- bow(link5,
+               user_agent = "For Educational Purpose")
+
+  scrapeNodes <- function(selector){
+    scrape(session) %>%
+      html_nodes(selector) %>%
+      html_text(trim = TRUE)
+  }
+
+  product_category <- rep("T-shirt", 10)
+
+  product_name <- scrapeNodes("h1.a-size-large.a-text-ellipsis")
+  product_name <- rep(product_name, 10)
+  product_name <- product_name[1:10]
+  
+  verified_reviews <-scrapeNodes("span.a-size-mini.a-color-state.a-text-bold")
+  verified_reviews <-verified_reviews[1:10]
+  
+  product_reviewer <- scrapeNodes("span.a-profile-name")
+  product_reviewer <- product_reviewer[1:10]
+  
+  product_review <- scrapeNodes("span.a-size-base.review-text")
+  product_review <- product_review[1:10]
+  
+  product_date <- scrapeNodes("span.a-size-base.a-color-secondary.review-date")
+  product_date <- product_date[1:10]
+  
+  product_rating <- scrapeNodes("span.a-icon-alt")
+  product_rating <- product_rating[1:10]
+  
+  productreviews5= data.frame()
+  productreviews5 <- rbind(productreviews5, data.frame(
+                      category = product_category,
+                      name = product_name,
+                      reviewer = product_reviewer,
+                      reviews = product_review,
+                      verified = verified_reviews,
+                      "date of review" = product_date,
+                      ratings = product_rating))
+  
+  
+
+ Sys.sleep(5)
+ 
+ 
+ productrev7 <- rbind(productreviews1,productreviews2,productreviews3,productreviews4,productreviews5)
+ 
+ write.csv(productrev7, file = "productrev7.csv")
+
+```
+
+product 8
+
+```{r}
+link1 <- "https://www.amazon.com.au/Gildan-Mens-Crew-T-Shirts-Multipack/product-reviews/B0931FY84J/ref=cm_cr_dp_d_show_all_btm?ie=UTF8&reviewerType=all_reviews"
+
+
+  session <- bow(link1,
+               user_agent = "For Educational Purpose")
+
+  scrapeNodes <- function(selector){
+    scrape(session) %>%
+      html_nodes(selector) %>%
+      html_text(trim = TRUE)
+  }
+
+  product_category <- rep("T-shirt", 10)
+
+  product_name <- scrapeNodes("h1.a-size-large.a-text-ellipsis")
+  product_name <- rep(product_name, 10)
+  product_name <- product_name[1:10]
+  
+  verified_reviews <-scrapeNodes("span.a-size-mini.a-color-state.a-text-bold")
+  verified_reviews <-verified_reviews[1:10]
+  
+  product_reviewer <- scrapeNodes("span.a-profile-name")
+  product_reviewer <- product_reviewer[1:10]
+  
+  product_review <- scrapeNodes("span.a-size-base.review-text")
+  product_review <- product_review[1:10]
+  
+  product_date <- scrapeNodes("span.a-size-base.a-color-secondary.review-date")
+  product_date <- product_date[1:10]
+  
+  product_rating <- scrapeNodes("span.a-icon-alt")
+  product_rating <- product_rating[1:10]
+  
+  productreviews1= data.frame()
+  productreviews1 <- rbind(productreviews1, data.frame(
+                      category = product_category,
+                      name = product_name,
+                      reviewer = product_reviewer,
+                      reviews = product_review,
+                      verified = verified_reviews,
+                      "date of review" = product_date,
+                      ratings = product_rating))
+
+  
+ Sys.sleep(5)
+
+
+link2 <- "https://www.amazon.com.au/Gildan-Mens-Crew-T-Shirts-Multipack/product-reviews/B0931FY84J/ref=cm_cr_arp_d_paging_btm_next_2?ie=UTF8&reviewerType=all_reviews&pageNumber=2"
+
+
+  session <- bow(link2,
+               user_agent = "For Educational Purpose")
+
+  scrapeNodes <- function(selector){
+    scrape(session) %>%
+      html_nodes(selector) %>%
+      html_text(trim = TRUE)
+  }
+
+  product_category <- rep("T-shirt", 10)
+
+  product_name <- scrapeNodes("h1.a-size-large.a-text-ellipsis")
+  product_name <- rep(product_name, 10)
+  product_name <- product_name[1:10]
+  
+  verified_reviews <-scrapeNodes("span.a-size-mini.a-color-state.a-text-bold")
+  verified_reviews <-verified_reviews[1:10]
+  
+  product_reviewer <- scrapeNodes("span.a-profile-name")
+  product_reviewer <- product_reviewer[1:10]
+  
+  product_review <- scrapeNodes("span.a-size-base.review-text")
+  product_review <- product_review[1:10]
+  
+  product_date <- scrapeNodes("span.a-size-base.a-color-secondary.review-date")
+  product_date <- product_date[1:10]
+  
+  product_rating <- scrapeNodes("span.a-icon-alt")
+  product_rating <- product_rating[1:10]
+  
+  productreviews2= data.frame()
+  productreviews2 <- rbind(productreviews2, data.frame(
+                      category = product_category,
+                      name = product_name,
+                      reviewer = product_reviewer,
+                      reviews = product_review,
+                      verified = verified_reviews,
+                      "date of review" = product_date,
+                      ratings = product_rating))
+
+  
+ Sys.sleep(5)
+
+link3 <- "https://www.amazon.com.au/Gildan-Mens-Crew-T-Shirts-Multipack/product-reviews/B0931FY84J/ref=cm_cr_getr_d_paging_btm_next_3?ie=UTF8&reviewerType=all_reviews&pageNumber=3"
+
+
+  session <- bow(link3,
+               user_agent = "For Educational Purpose")
+
+  scrapeNodes <- function(selector){
+    scrape(session) %>%
+      html_nodes(selector) %>%
+      html_text(trim = TRUE)
+  }
+
+  product_category <- rep("T-shirt", 10)
+
+  product_name <- scrapeNodes("h1.a-size-large.a-text-ellipsis")
+  product_name <- rep(product_name, 10)
+  product_name <- product_name[1:10]
+  
+  verified_reviews <-scrapeNodes("span.a-size-mini.a-color-state.a-text-bold")
+  verified_reviews <-verified_reviews[1:10]
+  
+  product_reviewer <- scrapeNodes("span.a-profile-name")
+  product_reviewer <- product_reviewer[1:10]
+  
+  product_review <- scrapeNodes("span.a-size-base.review-text")
+  product_review <- product_review[1:10]
+  
+  product_date <- scrapeNodes("span.a-size-base.a-color-secondary.review-date")
+  product_date <- product_date[1:10]
+  
+  product_rating <- scrapeNodes("span.a-icon-alt")
+  product_rating <- product_rating[1:10]
+  
+  productreviews3= data.frame()
+  productreviews3 <- rbind(productreviews3, data.frame(
+                      category = product_category,
+                      name = product_name,
+                      reviewer = product_reviewer,
+                      reviews = product_review,
+                      verified = verified_reviews,
+                      "date of review" = product_date,
+                      ratings = product_rating))
+
+  
+ Sys.sleep(5)
+
+
+link4 <- "https://www.amazon.com.au/Gildan-Mens-Crew-T-Shirts-Multipack/product-reviews/B0931FY84J/ref=cm_cr_getr_d_paging_btm_next_4?ie=UTF8&reviewerType=all_reviews&pageNumber=4"
+
+
+  session <- bow(link4,
+               user_agent = "For Educational Purpose")
+
+  scrapeNodes <- function(selector){
+    scrape(session) %>%
+      html_nodes(selector) %>%
+      html_text(trim = TRUE)
+  }
+
+  product_category <- rep("T-shirt", 10)
+
+  product_name <- scrapeNodes("h1.a-size-large.a-text-ellipsis")
+  product_name <- rep(product_name, 10)
+  product_name <- product_name[1:10]
+  
+  verified_reviews <-scrapeNodes("span.a-size-mini.a-color-state.a-text-bold")
+  verified_reviews <-verified_reviews[1:10]
+  
+  product_reviewer <- scrapeNodes("span.a-profile-name")
+  product_reviewer <- product_reviewer[1:10]
+  
+  product_review <- scrapeNodes("span.a-size-base.review-text")
+  product_review <- product_review[1:10]
+  
+  product_date <- scrapeNodes("span.a-size-base.a-color-secondary.review-date")
+  product_date <- product_date[1:10]
+  
+  product_rating <- scrapeNodes("span.a-icon-alt")
+  product_rating <- product_rating[1:10]
+  
+  productreviews4= data.frame()
+  productreviews4 <- rbind(productreviews4, data.frame(
+                      category = product_category,
+                      name = product_name,
+                      reviewer = product_reviewer,
+                      reviews = product_review,
+                      verified = verified_reviews,
+                      "date of review" = product_date,
+                      ratings = product_rating))
+
+  
+ Sys.sleep(5)
+
+
+link5 <- "https://www.amazon.com.au/Gildan-Mens-Crew-T-Shirts-Multipack/product-reviews/B0931FY84J/ref=cm_cr_getr_d_paging_btm_next_5?ie=UTF8&reviewerType=all_reviews&pageNumber=5"
+
+
+  session <- bow(link5,
+               user_agent = "For Educational Purpose")
+
+  scrapeNodes <- function(selector){
+    scrape(session) %>%
+      html_nodes(selector) %>%
+      html_text(trim = TRUE)
+  }
+
+  product_category <- rep("T-shirt", 10)
+
+  product_name <- scrapeNodes("h1.a-size-large.a-text-ellipsis")
+  product_name <- rep(product_name, 10)
+  product_name <- product_name[1:10]
+  
+  verified_reviews <-scrapeNodes("span.a-size-mini.a-color-state.a-text-bold")
+  verified_reviews <-verified_reviews[1:10]
+  
+  product_reviewer <- scrapeNodes("span.a-profile-name")
+  product_reviewer <- product_reviewer[1:10]
+  
+  product_review <- scrapeNodes("span.a-size-base.review-text")
+  product_review <- product_review[1:10]
+  
+  product_date <- scrapeNodes("span.a-size-base.a-color-secondary.review-date")
+  product_date <- product_date[1:10]
+  
+  product_rating <- scrapeNodes("span.a-icon-alt")
+  product_rating <- product_rating[1:10]
+  
+  productreviews5= data.frame()
+  productreviews5 <- rbind(productreviews5, data.frame(
+                      category = product_category,
+                      name = product_name,
+                      reviewer = product_reviewer,
+                      reviews = product_review,
+                      verified = verified_reviews,
+                      "date of review" = product_date,
+                      ratings = product_rating))
+  
+  
+
+ Sys.sleep(5)
+ 
+ 
+ productrev8 <- rbind(productreviews1,productreviews2,productreviews3,productreviews4,productreviews5)
+ 
+ write.csv(productrev8, file = "productrev8.csv")
+
+```
+
+product 9
+
+```{r}
+link1 <- "https://www.amazon.com.au/Dickies-Mens-Tall-Heavy-Weight/product-reviews/B01N6TYLVM/ref=cm_cr_dp_d_show_all_btm?ie=UTF8&reviewerType=all_reviews"
+
+
+  session <- bow(link1,
+               user_agent = "For Educational Purpose")
+
+  scrapeNodes <- function(selector){
+    scrape(session) %>%
+      html_nodes(selector) %>%
+      html_text(trim = TRUE)
+  }
+
+  product_category <- rep("T-shirt", 10)
+
+  product_name <- scrapeNodes("h1.a-size-large.a-text-ellipsis")
+  product_name <- rep(product_name, 10)
+  product_name <- product_name[1:10]
+  
+  verified_reviews <-scrapeNodes("span.a-size-mini.a-color-state.a-text-bold")
+  verified_reviews <-verified_reviews[1:10]
+  
+  product_reviewer <- scrapeNodes("span.a-profile-name")
+  product_reviewer <- product_reviewer[1:10]
+  
+  product_review <- scrapeNodes("span.a-size-base.review-text")
+  product_review <- product_review[1:10]
+  
+  product_date <- scrapeNodes("span.a-size-base.a-color-secondary.review-date")
+  product_date <- product_date[1:10]
+  
+  product_rating <- scrapeNodes("span.a-icon-alt")
+  product_rating <- product_rating[1:10]
+  
+  productreviews1= data.frame()
+  productreviews1 <- rbind(productreviews1, data.frame(
+                      category = product_category,
+                      name = product_name,
+                      reviewer = product_reviewer,
+                      reviews = product_review,
+                      verified = verified_reviews,
+                      "date of review" = product_date,
+                      ratings = product_rating))
+
+  
+ Sys.sleep(5)
+
+
+link2 <- "https://www.amazon.com.au/Dickies-Mens-Tall-Heavy-Weight/product-reviews/B01N6TYLVM/ref=cm_cr_arp_d_paging_btm_next_2?ie=UTF8&reviewerType=all_reviews&pageNumber=2"
+
+
+  session <- bow(link2,
+               user_agent = "For Educational Purpose")
+
+  scrapeNodes <- function(selector){
+    scrape(session) %>%
+      html_nodes(selector) %>%
+      html_text(trim = TRUE)
+  }
+
+  product_category <- rep("T-shirt", 10)
+
+  product_name <- scrapeNodes("h1.a-size-large.a-text-ellipsis")
+  product_name <- rep(product_name, 10)
+  product_name <- product_name[1:10]
+  
+  verified_reviews <-scrapeNodes("span.a-size-mini.a-color-state.a-text-bold")
+  verified_reviews <-verified_reviews[1:10]
+  
+  product_reviewer <- scrapeNodes("span.a-profile-name")
+  product_reviewer <- product_reviewer[1:10]
+  
+  product_review <- scrapeNodes("span.a-size-base.review-text")
+  product_review <- product_review[1:10]
+  
+  product_date <- scrapeNodes("span.a-size-base.a-color-secondary.review-date")
+  product_date <- product_date[1:10]
+  
+  product_rating <- scrapeNodes("span.a-icon-alt")
+  product_rating <- product_rating[1:10]
+  
+  productreviews2= data.frame()
+  productreviews2 <- rbind(productreviews2, data.frame(
+                      category = product_category,
+                      name = product_name,
+                      reviewer = product_reviewer,
+                      reviews = product_review,
+                      verified = verified_reviews,
+                      "date of review" = product_date,
+                      ratings = product_rating))
+
+  
+ Sys.sleep(5)
+
+link3 <- "https://www.amazon.com.au/Dickies-Mens-Tall-Heavy-Weight/product-reviews/B01N6TYLVM/ref=cm_cr_getr_d_paging_btm_next_3?ie=UTF8&reviewerType=all_reviews&pageNumber=3"
+
+
+  session <- bow(link3,
+               user_agent = "For Educational Purpose")
+
+  scrapeNodes <- function(selector){
+    scrape(session) %>%
+      html_nodes(selector) %>%
+      html_text(trim = TRUE)
+  }
+
+  product_category <- rep("T-shirt", 10)
+
+  product_name <- scrapeNodes("h1.a-size-large.a-text-ellipsis")
+  product_name <- rep(product_name, 10)
+  product_name <- product_name[1:10]
+  
+  verified_reviews <-scrapeNodes("span.a-size-mini.a-color-state.a-text-bold")
+  verified_reviews <-verified_reviews[1:10]
+  
+  product_reviewer <- scrapeNodes("span.a-profile-name")
+  product_reviewer <- product_reviewer[1:10]
+  
+  product_review <- scrapeNodes("span.a-size-base.review-text")
+  product_review <- product_review[1:10]
+  
+  product_date <- scrapeNodes("span.a-size-base.a-color-secondary.review-date")
+  product_date <- product_date[1:10]
+  
+  product_rating <- scrapeNodes("span.a-icon-alt")
+  product_rating <- product_rating[1:10]
+  
+  productreviews3= data.frame()
+  productreviews3 <- rbind(productreviews3, data.frame(
+                      category = product_category,
+                      name = product_name,
+                      reviewer = product_reviewer,
+                      reviews = product_review,
+                      verified = verified_reviews,
+                      "date of review" = product_date,
+                      ratings = product_rating))
+
+  
+ Sys.sleep(5)
+
+
+link4 <- "https://www.amazon.com.au/Dickies-Mens-Tall-Heavy-Weight/product-reviews/B01N6TYLVM/ref=cm_cr_getr_d_paging_btm_next_4?ie=UTF8&reviewerType=all_reviews&pageNumber=4"
+
+
+  session <- bow(link4,
+               user_agent = "For Educational Purpose")
+
+  scrapeNodes <- function(selector){
+    scrape(session) %>%
+      html_nodes(selector) %>%
+      html_text(trim = TRUE)
+  }
+
+  product_category <- rep("T-shirt", 10)
+
+  product_name <- scrapeNodes("h1.a-size-large.a-text-ellipsis")
+  product_name <- rep(product_name, 10)
+  product_name <- product_name[1:10]
+  
+  verified_reviews <-scrapeNodes("span.a-size-mini.a-color-state.a-text-bold")
+  verified_reviews <-verified_reviews[1:10]
+  
+  product_reviewer <- scrapeNodes("span.a-profile-name")
+  product_reviewer <- product_reviewer[1:10]
+  
+  product_review <- scrapeNodes("span.a-size-base.review-text")
+  product_review <- product_review[1:10]
+  
+  product_date <- scrapeNodes("span.a-size-base.a-color-secondary.review-date")
+  product_date <- product_date[1:10]
+  
+  product_rating <- scrapeNodes("span.a-icon-alt")
+  product_rating <- product_rating[1:10]
+  
+  productreviews4= data.frame()
+  productreviews4 <- rbind(productreviews4, data.frame(
+                      category = product_category,
+                      name = product_name,
+                      reviewer = product_reviewer,
+                      reviews = product_review,
+                      verified = verified_reviews,
+                      "date of review" = product_date,
+                      ratings = product_rating))
+
+  
+ Sys.sleep(5)
+
+
+link5 <- "https://www.amazon.com.au/Dickies-Mens-Tall-Heavy-Weight/product-reviews/B01N6TYLVM/ref=cm_cr_getr_d_paging_btm_next_5?ie=UTF8&reviewerType=all_reviews&pageNumber=5"
+
+
+  session <- bow(link5,
+               user_agent = "For Educational Purpose")
+
+  scrapeNodes <- function(selector){
+    scrape(session) %>%
+      html_nodes(selector) %>%
+      html_text(trim = TRUE)
+  }
+
+  product_category <- rep("T-shirt", 10)
+
+  product_name <- scrapeNodes("h1.a-size-large.a-text-ellipsis")
+  product_name <- rep(product_name, 10)
+  product_name <- product_name[1:10]
+  
+  verified_reviews <-scrapeNodes("span.a-size-mini.a-color-state.a-text-bold")
+  verified_reviews <-verified_reviews[1:10]
+  
+  product_reviewer <- scrapeNodes("span.a-profile-name")
+  product_reviewer <- product_reviewer[1:10]
+  
+  product_review <- scrapeNodes("span.a-size-base.review-text")
+  product_review <- product_review[1:10]
+  
+  product_date <- scrapeNodes("span.a-size-base.a-color-secondary.review-date")
+  product_date <- product_date[1:10]
+  
+  product_rating <- scrapeNodes("span.a-icon-alt")
+  product_rating <- product_rating[1:10]
+  
+  productreviews5= data.frame()
+  productreviews5 <- rbind(productreviews5, data.frame(
+                      category = product_category,
+                      name = product_name,
+                      reviewer = product_reviewer,
+                      reviews = product_review,
+                      verified = verified_reviews,
+                      "date of review" = product_date,
+                      ratings = product_rating))
+  
+  
+
+ Sys.sleep(5)
+ 
+ 
+ productrev9 <- rbind(productreviews1,productreviews2,productreviews3,productreviews4,productreviews5)
+ 
+ write.csv(productrev9, file = "productrev9.csv")
+
+```
+
+product 10
+
+```{r}
+productrev10 <- data.frame()
+
+for (page in 1:5) {
+  link1 <- paste0("https://www.amazon.com.au/Champion-Classic-Jersey-T-Shirt-Oxford/product-reviews/B01MSVTI53/ref=cm_cr_dp_d_show_all_btm_next_", page, "?ie=UTF8&reviewerType=all_reviews&pageNumber=", page)
+  session1 <- bow(link1, user_agent = "Educational Purpose")
+
+  scrapeNodes <- function(selector) {
+    scrape(session1) %>%
+      html_nodes(selector) %>%
+      html_text(trim = TRUE)
+  }
+  
+  product_category <- "T-shirt"
+  product_name <- "Champion Men's Classic Jersey"
+  verified_reviews <- scrapeNodes("span.a-size-mini.a-color-state.a-text-bold")[1:10]
+  product_reviewer <- scrapeNodes("span.a-profile-name")[1:10]
+  product_review <- scrapeNodes("span.a-size-base.review-text.review-text-content")[1:10]
+  product_date <- scrapeNodes("span.a-size-base.a-color-secondary.review-date")[1:10]
+  product_rating <- scrapeNodes("span.a-icon-alt")[1:10]
+
+  productrev10 <- rbind(productrev10, data.frame(
+                      category = product_category,
+                      name = product_name,
+                      reviewer = product_reviewer,
+                      reviews = product_review,
+                      verified = verified_reviews,
+                      "date of review" = product_date,
+                      ratings = product_rating))
+
+
+  Sys.sleep(3)
+}
+
+ write.csv(productrev10, file = "productrev10.csv")
+
+#View(productrev10)
+```
+
+```{r}
+productrev11 <- data.frame()
+
+for (page in 1:5) {
+  link1 <- paste0("https://www.amazon.com.au/Champion-Mens-Classic-Jersey-T-Shirt/product-reviews/B01N6DJO7M/ref=cm_cr_dp_d_show_all_btm_next_", page, "?ie=UTF8&reviewerType=all_reviews&pageNumber=", page)
+  session1 <- bow(link1, user_agent = "Educational Purpose")
+
+  scrapeNodes <- function(selector) {
+    scrape(session1) %>%
+      html_nodes(selector) %>%
+      html_text(trim = TRUE)
+  }
+  
+  product_category <- "T-shirt"
+  product_name <- "Champion Men's Classic Jersey"
+  verified_reviews <- scrapeNodes("span.a-size-mini.a-color-state.a-text-bold")[1:10]
+  product_reviewer <- scrapeNodes("span.a-profile-name")[1:10]
+  product_review <- scrapeNodes("span.a-size-base.review-text.review-text-content")[1:10]
+  product_date <- scrapeNodes("span.a-size-base.a-color-secondary.review-date")[1:10]
+  product_rating <- scrapeNodes("span.a-icon-alt")[1:10]
+
+  productrev11 <- rbind(productrev11, data.frame(
+                      category = product_category,
+                      name = product_name,
+                      reviewer = product_reviewer,
+                      reviews = product_review,
+                      verified = verified_reviews,
+                      "date of review" = product_date,
+                      ratings = product_rating))
+
+
+  Sys.sleep(3)
+}
+
+write.csv(productrev11, file = "productrev11.csv")
+ 
+#View(productrev11)
+
+```
+
+```{r}
+productrev12 <- data.frame()
+
+for (page in 1:5) {
+  link1 <- paste0("https://www.amazon.com.au/Merino-Protect-T-Shirt-Resistance-Outdoor/product-reviews/B08X34TQ6B/ref=cm_cr_dp_d_show_all_btm_next_", page, "?ie=UTF8&reviewerType=all_reviews&pageNumber=", page)
+  session1 <- bow(link1, user_agent = "Educational Purpose")
+
+  scrapeNodes <- function(selector) {
+    scrape(session1) %>%
+      html_nodes(selector) %>%
+      html_text(trim = TRUE)
+  }
+  
+  product_category <- "T-shirt"
+  product_name <- "Merino Protect 100% Merino Wool T Shirts for Men Odor Resistance Base Layer Lightweight Hiking Travel T-Shirt Soft Undershirt"
+  verified_reviews <- scrapeNodes("span.a-size-mini.a-color-state.a-text-bold")[1:10]
+  product_reviewer <- scrapeNodes("span.a-profile-name")[1:10]
+  product_review <- scrapeNodes("span.a-size-base.review-text.review-text-content")[1:10]
+  product_date <- scrapeNodes("span.a-size-base.a-color-secondary.review-date")[1:10]
+  product_rating <- scrapeNodes("span.a-icon-alt")[1:10]
+
+  productrev12 <- rbind(productrev12, data.frame(
+                      category = product_category,
+                      name = product_name,
+                      reviewer = product_reviewer,
+                      reviews = product_review,
+                      verified = verified_reviews,
+                      "date of review" = product_date,
+                      ratings = product_rating))
+
+
+  Sys.sleep(3)
+}
+
+write.csv(productrev12, file = "productrev12.csv")
+
+#View(productrev12)
+
+```
+
+```{r}
+productrev13 <- data.frame()
+
+for (page in 1:5) {
+  link1 <- paste0("https://www.amazon.com.au/Under-Armour-Tech-Short-Sleeve/product-reviews/B07CZBVWFB/ref=cm_cr_dp_d_show_all_btm_next_", page, "?ie=UTF8&reviewerType=all_reviews&pageNumber=", page)
+  session1 <- bow(link1, user_agent = "Educational Purpose")
+
+  scrapeNodes <- function(selector) {
+    scrape(session1) %>%
+      html_nodes(selector) %>%
+      html_text(trim = TRUE)
+  }
+  
+  product_category <- "T-shirt"
+  product_name <- "UNDER ARMOUR Men's Tech 2.0 Short-Sleeve T-Shirt"
+  verified_reviews <- scrapeNodes("span.a-size-mini.a-color-state.a-text-bold")[1:10]
+  product_reviewer <- scrapeNodes("span.a-profile-name")[1:10]
+  product_review <- scrapeNodes("span.a-size-base.review-text.review-text-content")[1:10]
+  product_date <- scrapeNodes("span.a-size-base.a-color-secondary.review-date")[1:10]
+  product_rating <- scrapeNodes("span.a-icon-alt")[1:10]
+
+  productrev13 <- rbind(productrev13, data.frame(
+                      category = product_category,
+                      name = product_name,
+                      reviewer = product_reviewer,
+                      reviews = product_review,
+                      verified = verified_reviews,
+                      "date of review" = product_date,
+                      ratings = product_rating))
+
+
+  Sys.sleep(3)
+}
+
+write.csv(productrev13, file = "productrev13.csv")
+
+#View(productrev13)
+
+```
+
+```{r}
+productrev14 <- data.frame()
+
+for (page in 1:5) {
+  link1 <- paste0("https://www.amazon.com.au/Carhartt-103296/product-reviews/B0CKL86ZLB/ref=cm_cr_dp_d_show_all_btm_next_", page, "?ie=UTF8&reviewerType=all_reviews&pageNumber=", page)
+  session1 <- bow(link1, user_agent = "Educational Purpose")
+
+  scrapeNodes <- function(selector) {
+    scrape(session1) %>%
+      html_nodes(selector) %>%
+      html_text(trim = TRUE)
+  }
+  
+  product_category <- "T-shirt"
+  product_name <- "Carhartt"
+  verified_reviews <- scrapeNodes("span.a-size-mini.a-color-state.a-text-bold")[1:10]
+  product_reviewer <- scrapeNodes("span.a-profile-name")[1:10]
+  product_review <- scrapeNodes("span.a-size-base.review-text.review-text-content")[1:10]
+  product_date <- scrapeNodes("span.a-size-base.a-color-secondary.review-date")[1:10]
+  product_rating <- scrapeNodes("span.a-icon-alt")[1:10]
+
+  productrev14 <- rbind(productrev14, data.frame(
+                      category = product_category,
+                      name = product_name,
+                      reviewer = product_reviewer,
+                      reviews = product_review,
+                      verified = verified_reviews,
+                      "date of review" = product_date,
+                      ratings = product_rating))
+
+
+  Sys.sleep(3)
+}
+
+write.csv(productrev14, file = "productrev14.csv")
+
+
+#View(productrev14)
+
+```
+
+```{r}
+productrev15 <- data.frame()
+
+for (page in 1:5) {
+  link1 <- paste0("https://www.amazon.com.au/Urban-Classics-Mens-Shaped-Long/product-reviews/B086B3ZBFC/ref=cm_cr_dp_d_show_all_btm_next_", page, "?ie=UTF8&reviewerType=all_reviews&pageNumber=", page)
+  session1 <- bow(link1, user_agent = "Educational Purpose")
+
+  scrapeNodes <- function(selector) {
+    scrape(session1) %>%
+      html_nodes(selector) %>%
+      html_text(trim = TRUE)
+  }
+  
+  product_category <- "T-shirt"
+  product_name <- "Urban Classics Men's Shaped Long"
+  verified_reviews <- scrapeNodes("span.a-size-mini.a-color-state.a-text-bold")[1:10]
+  product_reviewer <- scrapeNodes("span.a-profile-name")[1:10]
+  product_review <- scrapeNodes("span.a-size-base.review-text.review-text-content")[1:10]
+  product_date <- scrapeNodes("span.a-size-base.a-color-secondary.review-date")[1:10]
+  product_rating <- scrapeNodes("span.a-icon-alt")[1:10]
+
+  productrev15 <- rbind(productrev15, data.frame(
+                      category = product_category,
+                      name = product_name,
+                      reviewer = product_reviewer,
+                      reviews = product_review,
+                      verified = verified_reviews,
+                      "date of review" = product_date,
+                      ratings = product_rating))
+
+
+  Sys.sleep(3)
+}
+
+write.csv(productrev15, file = "productrev15.csv")
+
+
+#View(productrev15)
+
+```
+
+```{r}
+productrev16 <- data.frame()
+
+for (page in 1:5) {
+  link1 <- paste0("https://www.amazon.com.au/Venum-VENUM-03526-001-Classic-T-Shirt/product-reviews/B07RL8X45F/ref=cm_cr_dp_d_show_all_btm_next_", page, "?ie=UTF8&reviewerType=all_reviews&pageNumber=", page)
+  session1 <- bow(link1, user_agent = "Educational Purpose")
+
+  scrapeNodes <- function(selector) {
+    scrape(session1) %>%
+      html_nodes(selector) %>%
+      html_text(trim = TRUE)
+  }
+  
+  product_category <- "T-shirt"
+  product_name <- "Venum Classic T-Shirt"
+  verified_reviews <- scrapeNodes("span.a-size-mini.a-color-state.a-text-bold")[1:10]
+  product_reviewer <- scrapeNodes("span.a-profile-name")[1:10]
+  product_review <- scrapeNodes("span.a-size-base.review-text.review-text-content")[1:10]
+  product_date <- scrapeNodes("span.a-size-base.a-color-secondary.review-date")[1:10]
+  product_rating <- scrapeNodes("span.a-icon-alt")[1:10]
+
+  productrev16 <- rbind(productrev16, data.frame(
+                      category = product_category,
+                      name = product_name,
+                      reviewer = product_reviewer,
+                      reviews = product_review,
+                      verified = verified_reviews,
+                      "date of review" = product_date,
+                      ratings = product_rating))
+
+
+  Sys.sleep(3)
+}
+
+write.csv(productrev16, file = "productrev16.csv")
+
+
+#View(productrev16)
+
+```
+
+```{r}
+productrev17 <- data.frame()
+
+for (page in 1:5) {
+  link1 <- paste0("https://www.amazon.com.au/Gildan-Cotton-Raglan-T-Shirt-G5700/product-reviews/B09B3LYTJR/ref=cm_cr_dp_d_show_all_btm_next_", page, "?ie=UTF8&reviewerType=all_reviews&pageNumber=", page)
+  session1 <- bow(link1, user_agent = "Educational Purpose")
+
+  scrapeNodes <- function(selector) {
+    scrape(session1) %>%
+      html_nodes(selector) %>%
+      html_text(trim = TRUE)
+  }
+  
+  product_category <- "T-shirt"
+  product_name <- "Gildan Men's Heavy Cotton 3/4 Raglan T-Shirt, Style G5700, 2-Pack"
+  verified_reviews <- scrapeNodes("span.a-size-mini.a-color-state.a-text-bold")[1:10]
+  product_reviewer <- scrapeNodes("span.a-profile-name")[1:10]
+  product_review <- scrapeNodes("span.a-size-base.review-text.review-text-content")[1:10]
+  product_date <- scrapeNodes("span.a-size-base.a-color-secondary.review-date")[1:10]
+  product_rating <- scrapeNodes("span.a-icon-alt")[1:10]
+
+  productrev17 <- rbind(productrev17, data.frame(
+                      category = product_category,
+                      name = product_name,
+                      reviewer = product_reviewer,
+                      reviews = product_review,
+                      verified = verified_reviews,
+                      "date of review" = product_date,
+                      ratings = product_rating))
+
+
+  Sys.sleep(3)
+}
+
+write.csv(productrev17, file = "productrev17.csv")
+
+
+#View(productrev17)
+
+```
+
+```{r}
+productrev18 <- data.frame()
+
+for (page in 1:5) {
+  link1 <- paste0("https://www.amazon.com.au/Coca-Cola-CCXX007MSC3P1XX/product-reviews/B007R1NZAC/ref=cm_cr_dp_d_show_all_btm_next_", page, "?ie=UTF8&reviewerType=all_reviews&pageNumber=", page)
+  session1 <- bow(link1, user_agent = "Educational Purpose")
+
+  scrapeNodes <- function(selector) {
+    scrape(session1) %>%
+      html_nodes(selector) %>%
+      html_text(trim = TRUE)
+  }
+  
+  product_category <- "T-shirt"
+  product_name <- "Coca-Cola Men's Coke Classic T-Shirt"
+  verified_reviews <- scrapeNodes("span.a-size-mini.a-color-state.a-text-bold")[1:10]
+  product_reviewer <- scrapeNodes("span.a-profile-name")[1:10]
+  product_review <- scrapeNodes("span.a-size-base.review-text.review-text-content")[1:10]
+  product_date <- scrapeNodes("span.a-size-base.a-color-secondary.review-date")[1:10]
+  product_rating <- scrapeNodes("span.a-icon-alt")[1:10]
+
+  productrev18 <- rbind(productrev18, data.frame(
+                      category = product_category,
+                      name = product_name,
+                      reviewer = product_reviewer,
+                      reviews = product_review,
+                      verified = verified_reviews,
+                      "date of review" = product_date,
+                      ratings = product_rating))
+
+
+  Sys.sleep(3)
+}
+
+write.csv(productrev18, file = "productrev18.csv")
+
+
+
+#View(productrev18)
+
+```
+
+```{r}
+productrev19 <- data.frame()
+
+for (page in 1:5) {
+  link1 <- paste0("https://www.amazon.com.au/Under-Armour-HeatGear-Compression-Long-Sleeve/product-reviews/B0872NL76Y/ref=cm_cr_dp_d_show_all_btm_next_", page, "?ie=UTF8&reviewerType=all_reviews&pageNumber=", page)
+  session1 <- bow(link1, user_agent = "Educational Purpose")
+
+  scrapeNodes <- function(selector) {
+    scrape(session1) %>%
+      html_nodes(selector) %>%
+      html_text(trim = TRUE)
+  }
+  
+  product_category <- "T-shirt"
+  product_name <- "Under Armour Men's HeatGear Compression Long-Sleeve T-Shirt"
+  verified_reviews <- scrapeNodes("span.a-size-mini.a-color-state.a-text-bold")[1:10]
+  product_reviewer <- scrapeNodes("span.a-profile-name")[1:10]
+  product_review <- scrapeNodes("span.a-size-base.review-text.review-text-content")[1:10]
+  product_date <- scrapeNodes("span.a-size-base.a-color-secondary.review-date")[1:10]
+  product_rating <- scrapeNodes("span.a-icon-alt")[1:10]
+
+  productrev19 <- rbind(productrev19, data.frame(
+                      category = product_category,
+                      name = product_name,
+                      reviewer = product_reviewer,
+                      reviews = product_review,
+                      verified = verified_reviews,
+                      "date of review" = product_date,
+                      ratings = product_rating))
+
+
+  Sys.sleep(3)
+}
+
+write.csv(productrev19, file = "productrev19.csv")
+
+
+#View(productrev19)
+
+```
+
+```{r}
+productrev20 <- data.frame()
+
+for (page in 1:5) {
+  link1 <- paste0("https://www.amazon.com.au/Dickies-Mens-Tall-Heavy-Weight/product-reviews/B01N6TYLVM/ref=cm_cr_dp_d_show_all_btm_next_", page, "?ie=UTF8&reviewerType=all_reviews&pageNumber=", page)
+  session1 <- bow(link1, user_agent = "Educational Purpose")
+
+  scrapeNodes <- function(selector) {
+    scrape(session1) %>%
+      html_nodes(selector) %>%
+      html_text(trim = TRUE)
+  }
+  
+  product_category <- "T-shirt"
+  product_name <- "Dickies Men's Heavyweight Crew Neck Short Sleeve Tee"
+  verified_reviews <- scrapeNodes("span.a-size-mini.a-color-state.a-text-bold")[1:10]
+  product_reviewer <- scrapeNodes("span.a-profile-name")[1:10]
+  product_review <- scrapeNodes("span.a-size-base.review-text.review-text-content")[1:10]
+  product_date <- scrapeNodes("span.a-size-base.a-color-secondary.review-date")[1:10]
+  product_rating <- scrapeNodes("span.a-icon-alt")[1:10]
+
+  productrev20 <- rbind(productrev20, data.frame(
+                      category = product_category,
+                      name = product_name,
+                      reviewer = product_reviewer,
+                      reviews = product_review,
+                      verified = verified_reviews,
+                      "date of review" = product_date,
+                      ratings = product_rating))
+
+
+  Sys.sleep(3)
+}
+
+write.csv(productrev20, file = "productrev20.csv")
+
+
+#View(productrev20)
+
+```
+
+```{r}
+productrev21 <- data.frame()
+
+for (page in 1:5) {
+  link1 <- paste0("https://www.amazon.com.au/frueo-Quick-Dry-Anti-Odor-Breathable-Sportswear/product-reviews/B0B47QW2X8/ref=cm_cr_dp_d_show_all_btm_next_", page, "?ie=UTF8&reviewerType=all_reviews&pageNumber=", page)
+  session1 <- bow(link1, user_agent = "Educational Purpose")
+
+  scrapeNodes <- function(selector) {
+    scrape(session1) %>%
+      html_nodes(selector) %>%
+      html_text(trim = TRUE)
+  }
+  
+  product_category <- "T-shirt"
+  product_name <- "frueo 3 Pack Men's Workout Running Shirts Athletic Gym Tops Quick-Dry Moisture Wicking Anti-Odor Breathable Tee Crew Neck Short Sleeve T-Shirts Outdoor Sportswear"
+  verified_reviews <- scrapeNodes("span.a-size-mini.a-color-state.a-text-bold")[1:10]
+  product_reviewer <- scrapeNodes("span.a-profile-name")[1:10]
+  product_review <- scrapeNodes("span.a-size-base.review-text.review-text-content")[1:10]
+  product_date <- scrapeNodes("span.a-size-base.a-color-secondary.review-date")[1:10]
+  product_rating <- scrapeNodes("span.a-icon-alt")[1:10]
+
+  productrev21 <- rbind(productrev21, data.frame(
+                      category = product_category,
+                      name = product_name,
+                      reviewer = product_reviewer,
+                      reviews = product_review,
+                      verified = verified_reviews,
+                      "date of review" = product_date,
+                      ratings = product_rating))
+
+
+  Sys.sleep(3)
+}
+
+write.csv(productrev21, file = "productrev21.csv")
+
+
+
+#View(productrev21)
+
+```
+
+```{r}
+productrev22 <- data.frame()
+
+for (page in 1:5) {
+  link1 <- paste0("https://www.amazon.com.au/Hugo-Boss-Mens-T-Shirt-RN/product-reviews/B076R4Q34S/ref=cm_cr_dp_d_show_all_btm_next_", page, "?ie=UTF8&reviewerType=all_reviews&pageNumber=", page)
+  session1 <- bow(link1, user_agent = "Educational Purpose")
+
+  scrapeNodes <- function(selector) {
+    scrape(session1) %>%
+      html_nodes(selector) %>%
+      html_text(trim = TRUE)
+  }
+  
+  product_category <- "T-shirt"
+  product_name <- "BOSS Hugo Mens 50325887 T-Shirt Rn 3p Co Base Layer Top - Multi"
+  verified_reviews <- scrapeNodes("span.a-size-mini.a-color-state.a-text-bold")[1:10]
+  product_reviewer <- scrapeNodes("span.a-profile-name")[1:10]
+  product_review <- scrapeNodes("span.a-size-base.review-text.review-text-content")[1:10]
+  product_date <- scrapeNodes("span.a-size-base.a-color-secondary.review-date")[1:10]
+  product_rating <- scrapeNodes("span.a-icon-alt")[1:10]
+
+  productrev22 <- rbind(productrev22, data.frame(
+                      category = product_category,
+                      name = product_name,
+                      reviewer = product_reviewer,
+                      reviews = product_review,
+                      verified = verified_reviews,
+                      "date of review" = product_date,
+                      ratings = product_rating))
+
+
+  Sys.sleep(3)
+}
+
+write.csv(productrev22, file = "productrev22.csv")
+
+
+#View(productrev22)
+
+```
+
+```{r}
+productrev23 <- data.frame()
+
+for (page in 1:5) {
+  link1 <- paste0("https://www.amazon.com.au/Nautica-Short-Sleeve-V-Neck-T-Shirt/product-reviews/B077NSQ2HJ/ref=cm_cr_dp_d_show_all_btm_next_", page, "?ie=UTF8&reviewerType=all_reviews&pageNumber=", page)
+  session1 <- bow(link1, user_agent = "Educational Purpose")
+
+  scrapeNodes <- function(selector) {
+    scrape(session1) %>%
+      html_nodes(selector) %>%
+      html_text(trim = TRUE)
+  }
+  
+  product_category <- "T-shirt"
+  product_name <- "NAUTICA Men's Short Sleeve Solid Slim Fit V-Neck T-Shirt"
+  verified_reviews <- scrapeNodes("span.a-size-mini.a-color-state.a-text-bold")[1:10]
+  product_reviewer <- scrapeNodes("span.a-profile-name")[1:10]
+  product_review <- scrapeNodes("span.a-size-base.review-text.review-text-content")[1:10]
+  product_date <- scrapeNodes("span.a-size-base.a-color-secondary.review-date")[1:10]
+  product_rating <- scrapeNodes("span.a-icon-alt")[1:10]
+
+  productrev23 <- rbind(productrev23, data.frame(
+                      category = product_category,
+                      name = product_name,
+                      reviewer = product_reviewer,
+                      reviews = product_review,
+                      verified = verified_reviews,
+                      "date of review" = product_date,
+                      ratings = product_rating))
+
+
+  Sys.sleep(3)
+}
+
+write.csv(productrev23, file = "productrev23.csv")
+
+#View(productrev23)
+
+```
+
+```{r}
+productrev24 <- data.frame()
+
+for (page in 1:5) {
+  link1 <- paste0("https://www.amazon.com.au/Champion-Mens-Graphic-Jersey-Muscle/product-reviews/B07DGSR1C4/ref=cm_cr_dp_d_show_all_btm_next_", page, "?ie=UTF8&reviewerType=all_reviews&pageNumber=", page)
+  session1 <- bow(link1, user_agent = "Educational Purpose")
+
+  scrapeNodes <- function(selector) {
+    scrape(session1) %>%
+      html_nodes(selector) %>%
+      html_text(trim = TRUE)
+  }
+  
+  product_category <- "T-shirt"
+  product_name <- "Champion Mens GT22H Graphic Jersey Muscle Sleeveless Shirt"
+  verified_reviews <- scrapeNodes("span.a-size-mini.a-color-state.a-text-bold")[1:10]
+  product_reviewer <- scrapeNodes("span.a-profile-name")[1:10]
+  product_review <- scrapeNodes("span.a-size-base.review-text.review-text-content")[1:10]
+  product_date <- scrapeNodes("span.a-size-base.a-color-secondary.review-date")[1:10]
+  product_rating <- scrapeNodes("span.a-icon-alt")[1:10]
+
+  productrev24 <- rbind(productrev24, data.frame(
+                      category = product_category,
+                      name = product_name,
+                      reviewer = product_reviewer,
+                      reviews = product_review,
+                      verified = verified_reviews,
+                      "date of review" = product_date,
+                      ratings = product_rating))
+
+
+  Sys.sleep(3)
+}
+
+write.csv(productrev24, file = "productrev24.csv")
+
+#View(productrev24)
+
+```
+
+```{r}
+productrev25 <- data.frame()
+
+for (page in 1:5) {
+  link1 <- paste0("https://www.amazon.com.au/HARLEY-DAVIDSON-Orange-Shield-T-Shirt-30290591/product-reviews/B07VKL7N9Q/ref=cm_cr_dp_d_show_all_btm_next_", page, "?ie=UTF8&reviewerType=all_reviews&pageNumber=", page)
+  session1 <- bow(link1, user_agent = "Educational Purpose")
+
+  scrapeNodes <- function(selector) {
+    scrape(session1) %>%
+      html_nodes(selector) %>%
+      html_text(trim = TRUE)
+  }
+  
+  product_category <- "T-shirt"
+  product_name <- "Harley-Davidson Men's Orange Bar & Shield Black T-Shirt 30290591"
+  verified_reviews <- scrapeNodes("span.a-size-mini.a-color-state.a-text-bold")[1:10]
+  product_reviewer <- scrapeNodes("span.a-profile-name")[1:10]
+  product_review <- scrapeNodes("span.a-size-base.review-text.review-text-content")[1:10]
+  product_date <- scrapeNodes("span.a-size-base.a-color-secondary.review-date")[1:10]
+  product_rating <- scrapeNodes("span.a-icon-alt")[1:10]
+
+  productrev25 <- rbind(productrev25, data.frame(
+                      category = product_category,
+                      name = product_name,
+                      reviewer = product_reviewer,
+                      reviews = product_review,
+                      verified = verified_reviews,
+                      "date of review" = product_date,
+                      ratings = product_rating))
+
+
+  Sys.sleep(3)
+}
+
+write.csv(productrev25, file = "productrev25.csv")
+
+#View(productrev25)
+
+```
+
+```{r}
+productrev26 <- data.frame()
+
+for (page in 1:5) {
+  link1 <- paste0("https://www.amazon.com.au/Real-Essentials-Sweat-Resistant-Athletic-Performance/product-reviews/B07K2GGXVV/ref=cm_cr_dp_d_show_all_btm_next_", page, "?ie=UTF8&reviewerType=all_reviews&pageNumber=", page)
+  session1 <- bow(link1, user_agent = "Educational Purpose")
+
+  scrapeNodes <- function(selector) {
+    scrape(session1) %>%
+      html_nodes(selector) %>%
+      html_text(trim = TRUE)
+  }
+  
+  product_category <- "Shorts"
+  product_name <- "Real Essentials 5 Pack: Men's Dry-Fit Sweat Resistant Active Athletic Performance Shorts"
+  verified_reviews <- scrapeNodes("span.a-size-mini.a-color-state.a-text-bold")[1:10]
+  product_reviewer <- scrapeNodes("span.a-profile-name")[1:10]
+  product_review <- scrapeNodes("span.a-size-base.review-text.review-text-content")[1:10]
+  product_date <- scrapeNodes("span.a-size-base.a-color-secondary.review-date")[1:10]
+  product_rating <- scrapeNodes("span.a-icon-alt")[1:10]
+
+  productrev26 <- rbind(productrev26, data.frame(
+                      category = product_category,
+                      name = product_name,
+                      reviewer = product_reviewer,
+                      reviews = product_review,
+                      verified = verified_reviews,
+                      "date of review" = product_date,
+                      ratings = product_rating))
+
+
+  Sys.sleep(3)
+}
+
+write.csv(productrev26, file = "productrev26.csv")
+
+#View(productrev26)
+
+```
+
+```{r}
+productrev27 <- data.frame()
+
+for (page in 1:5) {
+  link1 <- paste0("https://www.amazon.com.au/Wrangler-Authentics-Outdoor-Comfort-Shorts/product-reviews/B075MXT3HJ/ref=cm_cr_dp_d_show_all_btm_next_", page, "?ie=UTF8&reviewerType=all_reviews&pageNumber=", page)
+  session1 <- bow(link1, user_agent = "Educational Purpose")
+
+  scrapeNodes <- function(selector) {
+    scrape(session1) %>%
+      html_nodes(selector) %>%
+      html_text(trim = TRUE)
+  }
+  
+  product_category <- "Shorts"
+  product_name <- "Wrangler Mens Performance Comfort Flex Waist Cargo Short Cargo Shorts"
+  verified_reviews <- scrapeNodes("span.a-size-mini.a-color-state.a-text-bold")[1:10]
+  product_reviewer <- scrapeNodes("span.a-profile-name")[1:10]
+  product_review <- scrapeNodes("span.a-size-base.review-text.review-text-content")[1:10]
+  product_date <- scrapeNodes("span.a-size-base.a-color-secondary.review-date")[1:10]
+  product_rating <- scrapeNodes("span.a-icon-alt")[1:10]
+
+  productrev27 <- rbind(productrev27, data.frame(
+                      category = product_category,
+                      name = product_name,
+                      reviewer = product_reviewer,
+                      reviews = product_review,
+                      verified = verified_reviews,
+                      "date of review" = product_date,
+                      ratings = product_rating))
+
+
+  Sys.sleep(3)
+}
+
+write.csv(productrev27, file = "productrev27.csv")
+
+#View(productrev27)
+
+```
+
+```{r}
+productrev28 <- data.frame()
+
+for (page in 1:5) {
+  link1 <- paste0("https://www.amazon.com.au/Dickies-Mens-Loose-Multi-Pocket-Short/product-reviews/B0CW3F4JTT/ref=cm_cr_dp_d_show_all_btm_next_", page, "?ie=UTF8&reviewerType=all_reviews&pageNumber=", page)
+  session1 <- bow(link1, user_agent = "Educational Purpose")
+
+  scrapeNodes <- function(selector) {
+    scrape(session1) %>%
+      html_nodes(selector) %>%
+      html_text(trim = TRUE)
+  }
+  
+  product_category <- "Shorts"
+  product_name <- "Dickies Men's 13 Inch Loose Fit Multi-Pocket Work Short"
+  verified_reviews <- scrapeNodes("span.a-size-mini.a-color-state.a-text-bold")[1:10]
+  product_reviewer <- scrapeNodes("span.a-profile-name")[1:10]
+  product_review <- scrapeNodes("span.a-size-base.review-text.review-text-content")[1:10]
+  product_date <- scrapeNodes("span.a-size-base.a-color-secondary.review-date")[1:10]
+  product_rating <- scrapeNodes("span.a-icon-alt")[1:10]
+
+  productrev28 <- rbind(productrev28, data.frame(
+                      category = product_category,
+                      name = product_name,
+                      reviewer = product_reviewer,
+                      reviews = product_review,
+                      verified = verified_reviews,
+                      "date of review" = product_date,
+                      ratings = product_rating))
+
+
+  Sys.sleep(3)
+}
+
+write.csv(productrev28, file = "productrev28.csv")
+
+#View(productrev28)
+
+```
+
+```{r}
+productrev29 <- data.frame()
+
+for (page in 1:5) {
+  link1 <- paste0("https://www.amazon.com.au/1994Fashion-Compression-Athletic-Baselayer-Underwear/product-reviews/B087V2GR6C/ref=cm_cr_dp_d_show_all_btm_next_", page, "?ie=UTF8&reviewerType=all_reviews&pageNumber=", page)
+  session1 <- bow(link1, user_agent = "Educational Purpose")
+
+  scrapeNodes <- function(selector) {
+    scrape(session1) %>%
+      html_nodes(selector) %>%
+      html_text(trim = TRUE)
+  }
+  
+  product_category <- "Shorts"
+  product_name <- "ZENGVEE 3 Pack Men's Compression Shorts Cool Dry Running Base Layer Shorts with Phone Pockets for Running,Training, Workout, Gym"
+  verified_reviews <- scrapeNodes("span.a-size-mini.a-color-state.a-text-bold")[1:10]
+  product_reviewer <- scrapeNodes("span.a-profile-name")[1:10]
+  product_review <- scrapeNodes("span.a-size-base.review-text.review-text-content")[1:10]
+  product_date <- scrapeNodes("span.a-size-base.a-color-secondary.review-date")[1:10]
+  product_rating <- scrapeNodes("span.a-icon-alt")[1:10]
+
+  productrev29 <- rbind(productrev29, data.frame(
+                      category = product_category,
+                      name = product_name,
+                      reviewer = product_reviewer,
+                      reviews = product_review,
+                      verified = verified_reviews,
+                      "date of review" = product_date,
+                      ratings = product_rating))
+
+
+  Sys.sleep(3)
+}
+
+write.csv(productrev29, file = "productrev29.csv")
+
+#View(productrev29)
+
+```
+
+```{r}
+productrev30 <- data.frame()
+
+for (page in 1:5) {
+  link1 <- paste0("https://www.amazon.com.au/Nike-BV6855/product-reviews/B081PCJ7XN/ref=cm_cr_dp_d_show_all_btm_next_", page, "?ie=UTF8&reviewerType=all_reviews&pageNumber=", page)
+  session1 <- bow(link1, user_agent = "Educational Purpose")
+
+  scrapeNodes <- function(selector) {
+    scrape(session1) %>%
+      html_nodes(selector) %>%
+      html_text(trim = TRUE)
+  }
+  
+  product_category <- "Shorts"
+  product_name <- "Nike"
+  verified_reviews <- scrapeNodes("span.a-size-mini.a-color-state.a-text-bold")[1:10]
+  product_reviewer <- scrapeNodes("span.a-profile-name")[1:10]
+  product_review <- scrapeNodes("span.a-size-base.review-text.review-text-content")[1:10]
+  product_date <- scrapeNodes("span.a-size-base.a-color-secondary.review-date")[1:10]
+  product_rating <- scrapeNodes("span.a-icon-alt")[1:10]
+
+  productrev30 <- rbind(productrev30, data.frame(
+                      category = product_category,
+                      name = product_name,
+                      reviewer = product_reviewer,
+                      reviews = product_review,
+                      verified = verified_reviews,
+                      "date of review" = product_date,
+                      ratings = product_rating))
+
+
+  Sys.sleep(3)
+}
+
+write.csv(productrev30, file = "productrev30.csv")
+
+#View(productrev30)
+
+```
+
+```{r}
+productrev31 <- data.frame()
+
+for (page in 1:5) {
+  link1 <- paste0("https://www.amazon.com.au/Champion-81622-Mens-Long-Mesh/product-reviews/B0CRDWLYYG/ref=cm_cr_dp_d_show_all_btm_next_", page, "?ie=UTF8&reviewerType=all_reviews&pageNumber=", page)
+  session1 <- bow(link1, user_agent = "Educational Purpose")
+
+  scrapeNodes <- function(selector) {
+    scrape(session1) %>%
+      html_nodes(selector) %>%
+      html_text(trim = TRUE)
+  }
+  
+  product_category <- "Shorts"
+  product_name <- "Champion Men's Long Mesh"
+  verified_reviews <- scrapeNodes("span.a-size-mini.a-color-state.a-text-bold")[1:10]
+  product_reviewer <- scrapeNodes("span.a-profile-name")[1:10]
+  product_review <- scrapeNodes("span.a-size-base.review-text.review-text-content")[1:10]
+  product_date <- scrapeNodes("span.a-size-base.a-color-secondary.review-date")[1:10]
+  product_rating <- scrapeNodes("span.a-icon-alt")[1:10]
+
+  productrev31 <- rbind(productrev31, data.frame(
+                      category = product_category,
+                      name = product_name,
+                      reviewer = product_reviewer,
+                      reviews = product_review,
+                      verified = verified_reviews,
+                      "date of review" = product_date,
+                      ratings = product_rating))
+
+
+  Sys.sleep(3)
+}
+
+write.csv(productrev31, file = "productrev31.csv")
+
+
+#View(productrev31)
+
+```
+
+```{r}
+productrev32 <- data.frame()
+
+for (page in 1:5) {
+  link1 <- paste0("https://www.amazon.com.au/Under-Armour-HeatGear-Compression-Shorts/product-reviews/B0BYDJW7LT/ref=cm_cr_dp_d_show_all_btm_next_", page, "?ie=UTF8&reviewerType=all_reviews&pageNumber=", page)
+  session1 <- bow(link1, user_agent = "Educational Purpose")
+
+  scrapeNodes <- function(selector) {
+    scrape(session1) %>%
+      html_nodes(selector) %>%
+      html_text(trim = TRUE)
+  }
+  
+  product_category <- "Shorts"
+  product_name <- "Under Armour Men's Armour HeatGear Compression Shorts"
+  verified_reviews <- scrapeNodes("span.a-size-mini.a-color-state.a-text-bold")[1:10]
+  product_reviewer <- scrapeNodes("span.a-profile-name")[1:10]
+  product_review <- scrapeNodes("span.a-size-base.review-text.review-text-content")[1:10]
+  product_date <- scrapeNodes("span.a-size-base.a-color-secondary.review-date")[1:10]
+  product_rating <- scrapeNodes("span.a-icon-alt")[1:10]
+
+  productrev32 <- rbind(productrev32, data.frame(
+                      category = product_category,
+                      name = product_name,
+                      reviewer = product_reviewer,
+                      reviews = product_review,
+                      verified = verified_reviews,
+                      "date of review" = product_date,
+                      ratings = product_rating))
+
+
+  Sys.sleep(3)
+}
+
+write.csv(productrev32, file = "productrev32.csv")
+
+
+#View(productrev32)
+
+```
+
+```{r}
+productrev33 <- data.frame()
+
+for (page in 1:5) {
+  link1 <- paste0("https://www.amazon.com.au/Wrangler/product-reviews/B0C4YMLM2N/ref=cm_cr_dp_d_show_all_btm_next_", page, "?ie=UTF8&reviewerType=all_reviews&pageNumber=", page)
+  session1 <- bow(link1, user_agent = "Educational Purpose")
+
+  scrapeNodes <- function(selector) {
+    scrape(session1) %>%
+      html_nodes(selector) %>%
+      html_text(trim = TRUE)
+  }
+  
+  product_category <- "Shorts"
+  product_name <- "Wrangler"
+  verified_reviews <- scrapeNodes("span.a-size-mini.a-color-state.a-text-bold")[1:10]
+  product_reviewer <- scrapeNodes("span.a-profile-name")[1:10]
+  product_review <- scrapeNodes("span.a-size-base.review-text.review-text-content")[1:10]
+  product_date <- scrapeNodes("span.a-size-base.a-color-secondary.review-date")[1:10]
+  product_rating <- scrapeNodes("span.a-icon-alt")[1:10]
+
+  productrev33 <- rbind(productrev33, data.frame(
+                      category = product_category,
+                      name = product_name,
+                      reviewer = product_reviewer,
+                      reviews = product_review,
+                      verified = verified_reviews,
+                      "date of review" = product_date,
+                      ratings = product_rating))
+
+
+  Sys.sleep(3)
+}
+
+write.csv(productrev33, file = "productrev33.csv")
+
+
+#View(productrev33)
+
+```
+
+```{r}
+productrev34 <- data.frame()
+
+for (page in 1:5) {
+  link1 <- paste0("https://www.amazon.com.au/Lee-Dungarees-Belted-Wyoming-Cargo/product-reviews/B089M8J461/ref=cm_cr_dp_d_show_all_btm_next_", page, "?ie=UTF8&reviewerType=all_reviews&pageNumber=", page)
+  session1 <- bow(link1, user_agent = "Educational Purpose")
+
+  scrapeNodes <- function(selector) {
+    scrape(session1) %>%
+      html_nodes(selector) %>%
+      html_text(trim = TRUE)
+  }
+  
+  product_category <- "Shorts"
+  product_name <- "Lee Men's Dungarees New Belted Wyoming Cargo Short"
+  verified_reviews <- scrapeNodes("span.a-size-mini.a-color-state.a-text-bold")[1:10]
+  product_reviewer <- scrapeNodes("span.a-profile-name")[1:10]
+  product_review <- scrapeNodes("span.a-size-base.review-text.review-text-content")[1:10]
+  product_date <- scrapeNodes("span.a-size-base.a-color-secondary.review-date")[1:10]
+  product_rating <- scrapeNodes("span.a-icon-alt")[1:10]
+
+  productrev34 <- rbind(productrev34, data.frame(
+                      category = product_category,
+                      name = product_name,
+                      reviewer = product_reviewer,
+                      reviews = product_review,
+                      verified = verified_reviews,
+                      "date of review" = product_date,
+                      ratings = product_rating))
+
+
+  Sys.sleep(3)
+}
+
+write.csv(productrev34, file = "productrev34.csv")
+
+
+#View(productrev34)
+
+```
+
+
+```{r}
+productrev35 <- data.frame()
+
+for (page in 1:5) {
+  link1 <- paste0("https://www.amazon.com.au/Canterbury-Advantage-Short/product-reviews/B077K29BJN/ref=cm_cr_dp_d_show_all_btm_next_", page, "?ie=UTF8&reviewerType=all_reviews&pageNumber=", page)
+  session1 <- bow(link1, user_agent = "Educational Purpose")
+
+  scrapeNodes <- function(selector) {
+    scrape(session1) %>%
+      html_nodes(selector) %>%
+      html_text(trim = TRUE)
+  }
+  
+  product_category <- "Shorts"
+  product_name <- "Canterbury Advantage Short"
+  verified_reviews <- scrapeNodes("span.a-size-mini.a-color-state.a-text-bold")[1:10]
+  product_reviewer <- scrapeNodes("span.a-profile-name")[1:10]
+  product_review <- scrapeNodes("span.a-size-base.review-text.review-text-content")[1:10]
+  product_date <- scrapeNodes("span.a-size-base.a-color-secondary.review-date")[1:10]
+  product_rating <- scrapeNodes("span.a-icon-alt")[1:10]
+
+  productrev35 <- rbind(productrev35, data.frame(
+                      category = product_category,
+                      name = product_name,
+                      reviewer = product_reviewer,
+                      reviews = product_review,
+                      verified = verified_reviews,
+                      "date of review" = product_date,
+                      ratings = product_rating))
+
+
+  Sys.sleep(3)
+}
+
+write.csv(productrev35, file = "productrev35.csv")
+
+
+#View(productrev35)
+
+```
+
+```{r}
+productrev36 <- data.frame()
+
+for (page in 1:5) {
+  link1 <- paste0("https://www.amazon.com.au/Wrangler-Authentics-Classic-Relaxed-Pocket/product-reviews/B0CR6HS22S/ref=cm_cr_dp_d_show_all_btm_next_", page, "?ie=UTF8&reviewerType=all_reviews&pageNumber=", page)
+  session1 <- bow(link1, user_agent = "Educational Purpose")
+
+  scrapeNodes <- function(selector) {
+    scrape(session1) %>%
+      html_nodes(selector) %>%
+      html_text(trim = TRUE)
+  }
+  
+  product_category <- "Shorts"
+  product_name <- "Wrangler Authentics Men's Classic Relaxed Fit Five Pocket Jean"
+  verified_reviews <- scrapeNodes("span.a-size-mini.a-color-state.a-text-bold")[1:10]
+  product_reviewer <- scrapeNodes("span.a-profile-name")[1:10]
+  product_review <- scrapeNodes("span.a-size-base.review-text.review-text-content")[1:10]
+  product_date <- scrapeNodes("span.a-size-base.a-color-secondary.review-date")[1:10]
+  product_rating <- scrapeNodes("span.a-icon-alt")[1:10]
+
+  productrev36 <- rbind(productrev36, data.frame(
+                      category = product_category,
+                      name = product_name,
+                      reviewer = product_reviewer,
+                      reviews = product_review,
+                      verified = verified_reviews,
+                      "date of review" = product_date,
+                      ratings = product_rating))
+
+
+  Sys.sleep(3)
+}
+
+write.csv(productrev36, file = "productrev36.csv")
+
+
+#View(productrev36)
+
+```
+
+```{r}
+productrev37 <- data.frame()
+
+for (page in 1:5) {
+  link1 <- paste0("https://www.amazon.com.au/NAUTICA-Classic-Front-Stretch-Solid/product-reviews/B09S7298J6/ref=cm_cr_dp_d_show_all_btm_next_", page, "?ie=UTF8&reviewerType=all_reviews&pageNumber=", page)
+  session1 <- bow(link1, user_agent = "Educational Purpose")
+
+  scrapeNodes <- function(selector) {
+    scrape(session1) %>%
+      html_nodes(selector) %>%
+      html_text(trim = TRUE)
+  }
+  
+  product_category <- "Shorts"
+  product_name <- "Nautica Men's Classic Fit Flat Front Stretch Solid Chino Deck Short"
+  verified_reviews <- scrapeNodes("span.a-size-mini.a-color-state.a-text-bold")[1:10]
+  product_reviewer <- scrapeNodes("span.a-profile-name")[1:10]
+  product_review <- scrapeNodes("span.a-size-base.review-text.review-text-content")[1:10]
+  product_date <- scrapeNodes("span.a-size-base.a-color-secondary.review-date")[1:10]
+  product_rating <- scrapeNodes("span.a-icon-alt")[1:10]
+
+  productrev37 <- rbind(productrev37, data.frame(
+                      category = product_category,
+                      name = product_name,
+                      reviewer = product_reviewer,
+                      reviews = product_review,
+                      verified = verified_reviews,
+                      "date of review" = product_date,
+                      ratings = product_rating))
+
+
+  Sys.sleep(3)
+}
+
+write.csv(productrev37, file = "productrev37.csv")
+
+
+#View(productrev37)
+
+```
+
+```{r}
+productrev38 <- data.frame()
+
+for (page in 1:5) {
+  link1 <- paste0("https://www.amazon.com.au/Volcom-Vmonty-Stretch-Chino-Short/product-reviews/B082TJ68BZ/ref=cm_cr_dp_d_show_all_btm_next_", page, "?ie=UTF8&reviewerType=all_reviews&pageNumber=", page)
+  session1 <- bow(link1, user_agent = "Educational Purpose")
+
+  scrapeNodes <- function(selector) {
+    scrape(session1) %>%
+      html_nodes(selector) %>%
+      html_text(trim = TRUE)
+  }
+  
+  product_category <- "Shorts"
+  product_name <- "Volcom"
+  verified_reviews <- scrapeNodes("span.a-size-mini.a-color-state.a-text-bold")[1:10]
+  product_reviewer <- scrapeNodes("span.a-profile-name")[1:10]
+  product_review <- scrapeNodes("span.a-size-base.review-text.review-text-content")[1:10]
+  product_date <- scrapeNodes("span.a-size-base.a-color-secondary.review-date")[1:10]
+  product_rating <- scrapeNodes("span.a-icon-alt")[1:10]
+
+  productrev38 <- rbind(productrev38, data.frame(
+                      category = product_category,
+                      name = product_name,
+                      reviewer = product_reviewer,
+                      reviews = product_review,
+                      verified = verified_reviews,
+                      "date of review" = product_date,
+                      ratings = product_rating))
+
+
+  Sys.sleep(3)
+}
+
+write.csv(productrev38, file = "productrev38.csv")
+
+
+#View(productrev38)
+
+```
+
+```{r}
+productrev39 <- data.frame()
+
+for (page in 1:5) {
+  link1 <- paste0("https://www.amazon.com.au/LEE-Extreme-Motion-Swope-Cargo/product-reviews/B06WVSSLJ8/ref=cm_cr_dp_d_show_all_btm_next_", page, "?ie=UTF8&reviewerType=all_reviews&pageNumber=", page)
+  session1 <- bow(link1, user_agent = "Educational Purpose")
+
+  scrapeNodes <- function(selector) {
+    scrape(session1) %>%
+      html_nodes(selector) %>%
+      html_text(trim = TRUE)
+  }
+  
+  product_category <- "Shorts"
+  product_name <- "Lee Mens 21861 Extreme Motion Swope Cargo Short Cargo Shorts"
+  verified_reviews <- scrapeNodes("span.a-size-mini.a-color-state.a-text-bold")[1:10]
+  product_reviewer <- scrapeNodes("span.a-profile-name")[1:10]
+  product_review <- scrapeNodes("span.a-size-base.review-text.review-text-content")[1:10]
+  product_date <- scrapeNodes("span.a-size-base.a-color-secondary.review-date")[1:10]
+  product_rating <- scrapeNodes("span.a-icon-alt")[1:10]
+
+  productrev39 <- rbind(productrev39, data.frame(
+                      category = product_category,
+                      name = product_name,
+                      reviewer = product_reviewer,
+                      reviews = product_review,
+                      verified = verified_reviews,
+                      "date of review" = product_date,
+                      ratings = product_rating))
+
+
+  Sys.sleep(3)
+}
+
+write.csv(productrev39, file = "productrev39.csv")
+
+
+#View(productrev39)
+
+```
+
+```{r}
+productrev40 <- data.frame()
+
+for (page in 1:5) {
+  link1 <- paste0("https://www.amazon.com.au/UNIONBAY-Survivor-Belted-Cargo-Short-Reg/product-reviews/B01MT8MQBT/ref=cm_cr_dp_d_show_all_btm_next_", page, "?ie=UTF8&reviewerType=all_reviews&pageNumber=", page)
+  session1 <- bow(link1, user_agent = "Educational Purpose")
+
+  scrapeNodes <- function(selector) {
+    scrape(session1) %>%
+      html_nodes(selector) %>%
+      html_text(trim = TRUE)
+  }
+  
+  product_category <- "Shorts"
+  product_name <- "UNIONBAY Men's Survivor Belted Cargo Short-Reg and Big & Tall Sizes"
+  verified_reviews <- scrapeNodes("span.a-size-mini.a-color-state.a-text-bold")[1:10]
+  product_reviewer <- scrapeNodes("span.a-profile-name")[1:10]
+  product_review <- scrapeNodes("span.a-size-base.review-text.review-text-content")[1:10]
+  product_date <- scrapeNodes("span.a-size-base.a-color-secondary.review-date")[1:10]
+  product_rating <- scrapeNodes("span.a-icon-alt")[1:10]
+
+  productrev40 <- rbind(productrev40, data.frame(
+                      category = product_category,
+                      name = product_name,
+                      reviewer = product_reviewer,
+                      reviews = product_review,
+                      verified = verified_reviews,
+                      "date of review" = product_date,
+                      ratings = product_rating))
+
+
+  Sys.sleep(3)
+}
+
+write.csv(productrev40, file = "productrev40.csv")
+
+
+#View(productrev40)
+
+```
+
+```{r}
+productrev41 <- data.frame()
+
+for (page in 1:5) {
+  link1 <- paste0("https://www.amazon.com.au/Liberty-Imports-Athletic-Basketball-Activewear/product-reviews/B07VPL7FH7/ref=cm_cr_dp_d_show_all_btm_next_", page, "?ie=UTF8&reviewerType=all_reviews&pageNumber=", page)
+  session1 <- bow(link1, user_agent = "Educational Purpose")
+
+  scrapeNodes <- function(selector) {
+    scrape(session1) %>%
+      html_nodes(selector) %>%
+      html_text(trim = TRUE)
+  }
+  
+  product_category <- "Shorts"
+  product_name <- "Liberty Imports Pack of 5 Men's Athletic Basketball Shorts Mesh Quick Dry Activewear with Pockets"
+  verified_reviews <- scrapeNodes("span.a-size-mini.a-color-state.a-text-bold")[1:10]
+  product_reviewer <- scrapeNodes("span.a-profile-name")[1:10]
+  product_review <- scrapeNodes("span.a-size-base.review-text.review-text-content")[1:10]
+  product_date <- scrapeNodes("span.a-size-base.a-color-secondary.review-date")[1:10]
+  product_rating <- scrapeNodes("span.a-icon-alt")[1:10]
+
+  productrev41 <- rbind(productrev41, data.frame(
+                      category = product_category,
+                      name = product_name,
+                      reviewer = product_reviewer,
+                      reviews = product_review,
+                      verified = verified_reviews,
+                      "date of review" = product_date,
+                      ratings = product_rating))
+
+
+  Sys.sleep(3)
+}
+
+write.csv(productrev41, file = "productrev41.csv")
+
+
+#View(productrev41)
+
+```
+
+```{r}
+productrev42 <- data.frame()
+
+for (page in 1:5) {
+  link1 <- paste0("https://www.amazon.com.au/Russell-Athletic-Mens-Short-Pockets/product-reviews/B07C8778DX/ref=cm_cr_dp_d_show_all_btm_next_", page, "?ie=UTF8&reviewerType=all_reviews&pageNumber=", page)
+  session1 <- bow(link1, user_agent = "Educational Purpose")
+
+  scrapeNodes <- function(selector) {
+    scrape(session1) %>%
+      html_nodes(selector) %>%
+      html_text(trim = TRUE)
+  }
+  
+  product_category <- "Shorts"
+  product_name <- "Russell Athletic Men's Mesh Short with Pockets"
+  verified_reviews <- scrapeNodes("span.a-size-mini.a-color-state.a-text-bold")[1:10]
+  product_reviewer <- scrapeNodes("span.a-profile-name")[1:10]
+  product_review <- scrapeNodes("span.a-size-base.review-text.review-text-content")[1:10]
+  product_date <- scrapeNodes("span.a-size-base.a-color-secondary.review-date")[1:10]
+  product_rating <- scrapeNodes("span.a-icon-alt")[1:10]
+
+  productrev42 <- rbind(productrev42, data.frame(
+                      category = product_category,
+                      name = product_name,
+                      reviewer = product_reviewer,
+                      reviews = product_review,
+                      verified = verified_reviews,
+                      "date of review" = product_date,
+                      ratings = product_rating))
+
+
+  Sys.sleep(3)
+}
+
+write.csv(productrev42, file = "productrev42.csv")
+
+#View(productrev42)
+
+```
+
+```{r}
+productrev43 <- data.frame()
+
+for (page in 1:5) {
+  link1 <- paste0("https://www.amazon.com.au/Under-Armour-Short-Bottoms-Shorts/product-reviews/B0BN7SGQX2/ref=cm_cr_dp_d_show_all_btm_next_", page, "?ie=UTF8&reviewerType=all_reviews&pageNumber=", page)
+  session1 <- bow(link1, user_agent = "Educational Purpose")
+
+  scrapeNodes <- function(selector) {
+    scrape(session1) %>%
+      html_nodes(selector) %>%
+      html_text(trim = TRUE)
+  }
+  
+  product_category <- "Shorts"
+  product_name <- "Under Armour UA Tech Short, Mens, Bottoms, Shorts, 10 in"
+  verified_reviews <- scrapeNodes("span.a-size-mini.a-color-state.a-text-bold")[1:10]
+  product_reviewer <- scrapeNodes("span.a-profile-name")[1:10]
+  product_review <- scrapeNodes("span.a-size-base.review-text.review-text-content")[1:10]
+  product_date <- scrapeNodes("span.a-size-base.a-color-secondary.review-date")[1:10]
+  product_rating <- scrapeNodes("span.a-icon-alt")[1:10]
+
+  productrev43 <- rbind(productrev43, data.frame(
+                      category = product_category,
+                      name = product_name,
+                      reviewer = product_reviewer,
+                      reviews = product_review,
+                      verified = verified_reviews,
+                      "date of review" = product_date,
+                      ratings = product_rating))
+
+
+  Sys.sleep(3)
+}
+
+write.csv(productrev43, file = "productrev43.csv")
+
+#View(productrev43)
+
+```
+
+```{r}
+productrev44 <- data.frame()
+
+for (page in 1:5) {
+  link1 <- paste0("https://www.amazon.com.au/MCPORO-Gym-Shorts-Men-Comfortable/product-reviews/B098FK9DSS/ref=cm_cr_dp_d_show_all_btm_next_", page, "?ie=UTF8&reviewerType=all_reviews&pageNumber=", page)
+  session1 <- bow(link1, user_agent = "Educational Purpose")
+
+  scrapeNodes <- function(selector) {
+    scrape(session1) %>%
+      html_nodes(selector) %>%
+      html_text(trim = TRUE)
+  }
+  
+  product_category <- "Shorts"
+  product_name <- "MCPORO Gym Shorts for Men – Comfortable Quick Dry Mens Athletic Shorts"
+  verified_reviews <- scrapeNodes("span.a-size-mini.a-color-state.a-text-bold")[1:10]
+  product_reviewer <- scrapeNodes("span.a-profile-name")[1:10]
+  product_review <- scrapeNodes("span.a-size-base.review-text.review-text-content")[1:10]
+  product_date <- scrapeNodes("span.a-size-base.a-color-secondary.review-date")[1:10]
+  product_rating <- scrapeNodes("span.a-icon-alt")[1:10]
+
+  productrev44 <- rbind(productrev44, data.frame(
+                      category = product_category,
+                      name = product_name,
+                      reviewer = product_reviewer,
+                      reviews = product_review,
+                      verified = verified_reviews,
+                      "date of review" = product_date,
+                      ratings = product_rating))
+
+
+  Sys.sleep(3)
+}
+
+write.csv(productrev44, file = "productrev44.csv")
+
+#View(productrev44)
+
+```
+
+```{r}
+productrev45 <- data.frame()
+
+for (page in 1:5) {
+  link1 <- paste0("https://www.amazon.com.au/LEE-Mens-Carpenter-Jean-Short/product-reviews/B09PBXGMSM/ref=cm_cr_dp_d_show_all_btm_next_", page, "?ie=UTF8&reviewerType=all_reviews&pageNumber=", page)
+  session1 <- bow(link1, user_agent = "Educational Purpose")
+
+  scrapeNodes <- function(selector) {
+    scrape(session1) %>%
+      html_nodes(selector) %>%
+      html_text(trim = TRUE)
+  }
+  
+  product_category <- "Shorts"
+  product_name <- "LEE Men's Carpenter Jean Short"
+  verified_reviews <- scrapeNodes("span.a-size-mini.a-color-state.a-text-bold")[1:10]
+  product_reviewer <- scrapeNodes("span.a-profile-name")[1:10]
+  product_review <- scrapeNodes("span.a-size-base.review-text.review-text-content")[1:10]
+  product_date <- scrapeNodes("span.a-size-base.a-color-secondary.review-date")[1:10]
+  product_rating <- scrapeNodes("span.a-icon-alt")[1:10]
+
+  productrev45 <- rbind(productrev45, data.frame(
+                      category = product_category,
+                      name = product_name,
+                      reviewer = product_reviewer,
+                      reviews = product_review,
+                      verified = verified_reviews,
+                      "date of review" = product_date,
+                      ratings = product_rating))
+
+
+  Sys.sleep(3)
+}
+
+write.csv(productrev45, file = "productrev45.csv")
+
+#View(productrev45)
+
+```
+
+```{r}
+productrev46 <- data.frame()
+
+for (page in 1:5) {
+  link1 <- paste0("https://www.amazon.com.au/Russell-Athletic-Cotton-Baseline-Pockets/product-reviews/B07HXDCCJ1/ref=cm_cr_dp_d_show_all_btm_next_", page, "?ie=UTF8&reviewerType=all_reviews&pageNumber=", page)
+  session1 <- bow(link1, user_agent = "Educational Purpose")
+
+  scrapeNodes <- function(selector) {
+    scrape(session1) %>%
+      html_nodes(selector) %>%
+      html_text(trim = TRUE)
+  }
+  
+  product_category <- "Shorts"
+  product_name <- "Russell Athletic Men's Cotton Baseline Short with Pockets"
+  verified_reviews <- scrapeNodes("span.a-size-mini.a-color-state.a-text-bold")[1:10]
+  product_reviewer <- scrapeNodes("span.a-profile-name")[1:10]
+  product_review <- scrapeNodes("span.a-size-base.review-text.review-text-content")[1:10]
+  product_date <- scrapeNodes("span.a-size-base.a-color-secondary.review-date")[1:10]
+  product_rating <- scrapeNodes("span.a-icon-alt")[1:10]
+
+  productrev46 <- rbind(productrev46, data.frame(
+                      category = product_category,
+                      name = product_name,
+                      reviewer = product_reviewer,
+                      reviews = product_review,
+                      verified = verified_reviews,
+                      "date of review" = product_date,
+                      ratings = product_rating))
+
+
+  Sys.sleep(3)
+}
+
+write.csv(productrev46, file = "productrev46.csv")
+
+#View(productrev46)
+
+```
+
+```{r}
+productrev47 <- data.frame()
+
+for (page in 1:5) {
+  link1 <- paste0("https://www.amazon.com.au/Under-Armour-Mens-Graphic-Shorts/product-reviews/B071P2NZ91/ref=cm_cr_dp_d_show_all_btm_next_", page, "?ie=UTF8&reviewerType=all_reviews&pageNumber=", page)
+  session1 <- bow(link1, user_agent = "Educational Purpose")
+
+  scrapeNodes <- function(selector) {
+    scrape(session1) %>%
+      html_nodes(selector) %>%
+      html_text(trim = TRUE)
+  }
+  
+  product_category <- "Shorts"
+  product_name <- "Under Armour Men's UA Tech Graphic Short"
+  verified_reviews <- scrapeNodes("span.a-size-mini.a-color-state.a-text-bold")[1:10]
+  product_reviewer <- scrapeNodes("span.a-profile-name")[1:10]
+  product_review <- scrapeNodes("span.a-size-base.review-text.review-text-content")[1:10]
+  product_date <- scrapeNodes("span.a-size-base.a-color-secondary.review-date")[1:10]
+  product_rating <- scrapeNodes("span.a-icon-alt")[1:10]
+
+  productrev47 <- rbind(productrev47, data.frame(
+                      category = product_category,
+                      name = product_name,
+                      reviewer = product_reviewer,
+                      reviews = product_review,
+                      verified = verified_reviews,
+                      "date of review" = product_date,
+                      ratings = product_rating))
+
+
+  Sys.sleep(3)
+}
+
+write.csv(productrev47, file = "productrev47.csv")
+
+#View(productrev47)
+
+```
+
+```{r}
+productrev48 <- data.frame()
+
+for (page in 1:5) {
+  link1 <- paste0("https://www.amazon.com.au/CARHARTT-Force-Relaxed-Ripstop-Cargo/product-reviews/B0BZL69LZM/ref=cm_cr_dp_d_show_all_btm_next_", page, "?ie=UTF8&reviewerType=all_reviews&pageNumber=", page)
+  session1 <- bow(link1, user_agent = "Educational Purpose")
+
+  scrapeNodes <- function(selector) {
+    scrape(session1) %>%
+      html_nodes(selector) %>%
+      html_text(trim = TRUE)
+  }
+  
+  product_category <- "Shorts"
+  product_name <- "CARHARTT Men's Force Relaxed Fit Ripstop Cargo Work Short"
+  verified_reviews <- scrapeNodes("span.a-size-mini.a-color-state.a-text-bold")[1:10]
+  product_reviewer <- scrapeNodes("span.a-profile-name")[1:10]
+  product_review <- scrapeNodes("span.a-size-base.review-text.review-text-content")[1:10]
+  product_date <- scrapeNodes("span.a-size-base.a-color-secondary.review-date")[1:10]
+  product_rating <- scrapeNodes("span.a-icon-alt")[1:10]
+
+  productrev48 <- rbind(productrev48, data.frame(
+                      category = product_category,
+                      name = product_name,
+                      reviewer = product_reviewer,
+                      reviews = product_review,
+                      verified = verified_reviews,
+                      "date of review" = product_date,
+                      ratings = product_rating))
+
+
+  Sys.sleep(3)
+}
+
+write.csv(productrev48, file = "productrev48.csv")
+
+#View(productrev48)
+
+```
+
+```{r}
+productrev49 <- data.frame()
+
+for (page in 1:5) {
+  link1 <- paste0("https://www.amazon.com.au/G-Star-Raw-51003-7607-424/product-reviews/B079JXYSQ6/ref=cm_cr_dp_d_show_all_btm_next_", page, "?ie=UTF8&reviewerType=all_reviews&pageNumber=", page)
+  session1 <- bow(link1, user_agent = "Educational Purpose")
+
+  scrapeNodes <- function(selector) {
+    scrape(session1) %>%
+      html_nodes(selector) %>%
+      html_text(trim = TRUE)
+  }
+  
+  product_category <- "Shorts"
+  product_name <- "G-Star Men's Sato Denim"
+  verified_reviews <- scrapeNodes("span.a-size-mini.a-color-state.a-text-bold")[1:10]
+  product_reviewer <- scrapeNodes("span.a-profile-name")[1:10]
+  product_review <- scrapeNodes("span.a-size-base.review-text.review-text-content")[1:10]
+  product_date <- scrapeNodes("span.a-size-base.a-color-secondary.review-date")[1:10]
+  product_rating <- scrapeNodes("span.a-icon-alt")[1:10]
+
+  productrev49 <- rbind(productrev49, data.frame(
+                      category = product_category,
+                      name = product_name,
+                      reviewer = product_reviewer,
+                      reviews = product_review,
+                      verified = verified_reviews,
+                      "date of review" = product_date,
+                      ratings = product_rating))
+
+
+  Sys.sleep(3)
+}
+
+write.csv(productrev49, file = "productrev49.csv")
+
+#View(productrev49)
+
+```
+
+```{r}
+productrev50 <- data.frame()
+
+for (page in 1:5) {
+  link1 <- paste0("https://www.amazon.com.au/PUMA-Shorts-Training-Black-White/product-reviews/B0781W1451/ref=cm_cr_dp_d_show_all_btm_next_", page, "?ie=UTF8&reviewerType=all_reviews&pageNumber=", page)
+  session1 <- bow(link1, user_agent = "Educational Purpose")
+
+  scrapeNodes <- function(selector) {
+    scrape(session1) %>%
+      html_nodes(selector) %>%
+      html_text(trim = TRUE)
+  }
+  
+  product_category <- "Shorts"
+  product_name <- "PUMA Men's Liga Shorts Core Training Black White, L"
+  verified_reviews <- scrapeNodes("span.a-size-mini.a-color-state.a-text-bold")[1:10]
+  product_reviewer <- scrapeNodes("span.a-profile-name")[1:10]
+  product_review <- scrapeNodes("span.a-size-base.review-text.review-text-content")[1:10]
+  product_date <- scrapeNodes("span.a-size-base.a-color-secondary.review-date")[1:10]
+  product_rating <- scrapeNodes("span.a-icon-alt")[1:10]
+
+  productrev50 <- rbind(productrev50, data.frame(
+                      category = product_category,
+                      name = product_name,
+                      reviewer = product_reviewer,
+                      reviews = product_review,
+                      verified = verified_reviews,
+                      "date of review" = product_date,
+                      ratings = product_rating))
+
+
+  Sys.sleep(3)
+}
+
+write.csv(productrev50, file = "productrev50.csv")
+
+#View(productrev50)
+
+```
