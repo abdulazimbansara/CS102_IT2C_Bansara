@@ -1,0 +1,75 @@
+---
+title: "Practical Exam"
+author: "Abdul Azim P. Bansara"
+date: "2024-03-06"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+1A. Find out, in a single command, which columns of warpbreaks are either numeric or
+integer. What are the data types of each column?
+```{r}
+data("warpbreaks")
+
+#the coloumn breaks are numeric 
+```
+
+2A. How many observations does it have?
+```{r}
+str(warpbreaks)
+
+#there are 54 observation
+
+```
+3A. Is numeric a natural data type for the columns which are stored as such? Convert to
+integer when necessary.
+```{r, error=TRUE}
+intwarpbreaks <- warpbreaks
+
+intwarpbreaks <- as.integer(warpbreaks)
+
+#intwarpbreaks <- as.integer(warpbreaks$breaks)
+#intwarpbreaks <- as.integer(warpbreaks$wool)
+#intwarpbreaks <- as.integer(warpbreaks$tension)
+```
+
+4A.Error messages in R sometimes report the underlying type of an object rather than the
+user-level class. Derive from the following code and error message what the
+underlying type. Explain what is the error all about. Do not just copy the error
+message that was displayed.
+```{r}
+# it is error because it cannot forced to convert the list of object in data  to integer.
+
+
+```
+
+B. Load the exampleFile.txt
+
+1B.Read the complete file using readLines.
+```{r}
+
+fileread <- readLines("/cloud/project/PractExam/exampleFile.txt")
+
+fileread
+
+```
+
+
+2B.
+```{r}
+
+commentvec <- fileread[grepl("//",fileread)]
+commentvec
+
+datavec <- fileread[grepl(";",fileread)]
+datavec
+
+```
+
+3B.
+```{r}
+
+
+```
