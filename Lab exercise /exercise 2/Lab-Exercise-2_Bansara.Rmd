@@ -4014,3 +4014,14 @@ write.csv(productrev50, file = "productrev50.csv")
 #View(productrev50)
 
 ```
+
+```{r}
+allproductrev<-bind_rows(productrev1,productrev2,productrev3,productrev4,productrev5,productrev6,productrev7,productrev8,productrev9,productrev10,
+      productrev11,productrev12,productrev13,productrev14,productrev15,productrev16,productrev17,productrev18,productrev19,productrev20,
+      productrev21,productrev22,productrev23,productrev24,productrev25,productrev26,productrev27,productrev28,productrev29,productrev30,
+      productrev31,productrev32,productrev33,productrev34,productrev35,productrev36,productrev37,productrev38,productrev39,productrev40,
+      productrev41,productrev42,productrev43,productrev44,productrev45,productrev46,productrev47,productrev48,productrev49,productrev50,)
+
+write.csv(allproductrev, file ="allproductrev.csv")
+
+```
