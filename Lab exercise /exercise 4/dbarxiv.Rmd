@@ -1,0 +1,61 @@
+---
+title: "Lab Exercise 4"
+author: "Abdul Azim P. Bansara"
+date: "2024-03-23"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+INSERT ALL REVIEWS DATA FRAME TO DATABASE
+
+USED RMYSQL
+
+```{r}
+library(DBI)
+library(odbc)
+library(RMySQL)
+library(dplyr,dbplyr)
+```
+connection <- dbConnect(RMySQL::MySQL(),
+                        dsn="MariaDB-connection",
+                        Server = "localhost",
+                        dbname = "Arxiv", 
+                        user = "root", 
+                        password = "") 
+
+
+```
+
+library(readr)
+
+arti_ai <- read.csv("Arxiv_paperAI.csv")
+tail(arti_ai)
+
+```
+
+Writing Table to Database
+
+```{r}
+
+# dbWriteTable(connection, 'Arxiv_Ai', articles, append = TRUE)
+
+```
+
+LISTING TABLES AND FIELDS
+
+```{r}```
+
+dbListTables(connection)
+dbListFields(connection,'Arxiv_Ai')
+
+
+READING DATA FROM TABLE
+
+```{r}```
+
+arxivdata <- dbGetQuery(connection, "SELECT * FROM Arxiv.labact4Arti")
+glimpse(arxivdata)
+
+
